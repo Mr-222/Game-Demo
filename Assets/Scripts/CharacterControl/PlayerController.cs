@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float rotationSpeed = 10;
     
+    public Camera followCamera { get; set; }
+    
     void Start()
     {
         _controller = GetComponent<CharacterController>();
@@ -26,7 +28,7 @@ public class PlayerController : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
         
-        Vector3 movementInput = new Vector3(horizontalInput, 0, verticalInput);
+        Vector3 movementInput = Quaternion.Euler(0, followCamera.transform.eulerAngles.y, 0) * new Vector3(horizontalInput, 0, verticalInput);
         Vector3 movementDirection = movementInput.normalized;
 
         if (movementDirection != Vector3.zero)
