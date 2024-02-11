@@ -13,7 +13,10 @@ public class CameraController : MonoBehaviour
     private Transform target;
     
     [SerializeField]
-    private float distanceFromTarget = 3f;
+    private float yDistanceFromTarget = .5f;
+    
+    [SerializeField]
+    private float zDistanceFromTarget = 3f;
     
     private Vector3 _currentRotation;
     private Vector3 _smoothVelocity = Vector3.zero;
@@ -40,6 +43,6 @@ public class CameraController : MonoBehaviour
         _currentRotation = Vector3.SmoothDamp(_currentRotation, nextRotation, ref _smoothVelocity, smoothTime);
         transform.localEulerAngles = _currentRotation;
 
-        transform.position = target.position - transform.forward * distanceFromTarget;
+        transform.position = target.position - transform.forward * zDistanceFromTarget + Vector3.up * yDistanceFromTarget;
     }
 }
