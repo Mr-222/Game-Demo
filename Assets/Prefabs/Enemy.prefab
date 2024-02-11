@@ -365,7 +365,7 @@ MonoBehaviour:
   distantToTarget: 0
   stoppingDistance: 2
   RotationSpeed: 25
-  speed: 2
+  speed: 3.5
 --- !u!1 &8730371481169872694
 GameObject:
   m_ObjectHideFlags: 0
