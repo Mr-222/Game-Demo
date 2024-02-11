@@ -523,7 +523,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 85
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -604,7 +604,7 @@ MonoBehaviour:
   mouseSensitivity: 3
   target: {fileID: 2038479885}
   yDistanceFromTarget: 0.65
-  zDistanceFromTarget: 5
+  zDistanceFromTarget: 4
   smoothTime: 0.2
 --- !u!1 &1938284801
 GameObject:
