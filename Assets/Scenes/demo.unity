@@ -603,7 +603,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseSensitivity: 3
   target: {fileID: 2038479885}
-  distanceFromTarget: 5
+  yDistanceFromTarget: 0.65
+  zDistanceFromTarget: 5
   smoothTime: 0.2
 --- !u!1 &1938284801
 GameObject:
