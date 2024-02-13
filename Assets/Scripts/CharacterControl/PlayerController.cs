@@ -12,6 +12,10 @@ public class PlayerController : MonoBehaviour
     private float rotationSpeed = 10;
     
     public Camera followCamera { get; set; }
+
+    public bool attack;
+
+    public GameObject enemy;
     
     void Start()
     {
@@ -20,7 +24,18 @@ public class PlayerController : MonoBehaviour
     
     void Update()
     {
+        attack = enemy;
+
+        if (attack)
+        {
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                
+                enemy.GetComponent<HPScript>().hp -= 5;
+            }
+        }
         Movement();
+
     }
 
     void Movement()
