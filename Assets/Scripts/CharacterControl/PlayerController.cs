@@ -13,9 +13,9 @@ public class PlayerController : MonoBehaviour
     
     public Camera followCamera { get; set; }
 
-    public bool attack;
+    //public bool attack;
 
-    public GameObject enemy;
+    //public GameObject enemy;
     
     void Start()
     {
@@ -24,16 +24,16 @@ public class PlayerController : MonoBehaviour
     
     void Update()
     {
-        attack = enemy;
+        //attack = enemy;
 
-        if (attack)
-        {
-            if (Input.GetKeyDown(KeyCode.F))
-            {
+        //if (attack)
+        //{
+        //    if (Input.GetKeyDown(KeyCode.F))
+        //    {
                 
-                enemy.GetComponent<HPScript>().hp -= 5;
-            }
-        }
+        //        enemy.GetComponent<HPScript>().hp -= 5;
+        //    }
+        //}
         Movement();
 
     }

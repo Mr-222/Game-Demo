@@ -533,7 +533,7 @@ GameObject:
   - component: {fileID: 8730371480905006837}
   - component: {fileID: 8730371480905006838}
   - component: {fileID: 576117821}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy
   m_TagString: enemy
   m_Icon: {fileID: 0}
@@ -613,8 +613,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a02f75e0fdefd4287b40f511101e8b0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectRadius: 10.8
-  fov: 100
+  detectRadius: 20
+  fov: 360
 --- !u!114 &8730371480905006838
 MonoBehaviour:
   m_ObjectHideFlags: 0
