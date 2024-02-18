@@ -4,8 +4,8 @@ public class Collector : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        ICollectible coin = other.GetComponent<Coin>();
-        if (coin != null)
-            coin.Collect();
+        ICollectible collectible = other.GetComponent<ICollectible>();
+        if (collectible != null)
+            collectible.Collect();
     }
 }
