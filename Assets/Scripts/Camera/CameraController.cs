@@ -13,7 +13,7 @@ public class CameraController : MonoBehaviour
     private Transform target;
     
     [SerializeField]
-    private float yDistanceFromTarget = .5f;
+    private float yDistanceFromTarget = 10f;
     
     [SerializeField]
     private float zDistanceFromTarget = 3f;
