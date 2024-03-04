@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     
     [SerializeField]
     private float rotationSpeed = 10;
-    
+    private Animator anim;
     public Camera followCamera { get; set; }
 
     //public bool attack;
@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         _controller = GetComponent<CharacterController>();
+        anim = GetComponent<Animator>();
     }
     
     void Update()
@@ -30,7 +31,7 @@ public class PlayerController : MonoBehaviour
         //{
         //    if (Input.GetKeyDown(KeyCode.F))
         //    {
-                
+
         //        enemy.GetComponent<HPScript>().hp -= 5;
         //    }
         //}
@@ -42,7 +43,8 @@ public class PlayerController : MonoBehaviour
     {
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
-        
+        anim.SetFloat("velx", horizontalInput);
+        anim.SetFloat("vely", verticalInput);
         Vector3 movementInput = Quaternion.Euler(0, followCamera.transform.eulerAngles.y, 0) * new Vector3(horizontalInput, 0, verticalInput);
         Vector3 movementDirection = movementInput.normalized;
 
@@ -52,6 +54,6 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, Time.deltaTime * rotationSpeed);
         }
 
-        _controller.Move(movementDirection * movementSpeed * Time.deltaTime);
+        _controller.SimpleMove(movementDirection * movementSpeed * Time.deltaTime);
     }
 }
