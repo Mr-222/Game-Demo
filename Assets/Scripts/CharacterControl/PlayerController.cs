@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
     private Animator anim;
     
     [SerializeField]
-    private float movementSpeed = 5;
+    private float movementSpeed = 400;
     
     void Start()
     {
@@ -15,6 +15,11 @@ public class PlayerController : MonoBehaviour
     }
     
     void Update()
+    {
+        
+    }
+
+    private void FixedUpdate()
     {
         Movement();
     }
@@ -27,8 +32,8 @@ public class PlayerController : MonoBehaviour
         // Translation
         Vector3 movementInput = new Vector3(horizontalInput, 0, verticalInput);
         Vector3 movementDirection = movementInput.normalized;
-        Vector3 movement = movementDirection * movementSpeed * Time.deltaTime;
-        rb.MovePosition(transform.position + movement);
+        Vector3 movement = movementDirection * movementSpeed;
+        rb.AddForce(movement);
 
         // Rotate toward mouse position
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

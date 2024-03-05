@@ -633,7 +633,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 4463868694376661}
-  offset: {x: -3, y: 10, z: -5.5}
+  offset: {x: 0, y: 10, z: -4}
+  viewingAngle: {x: 60, y: 0, z: 0}
+  threshold: 3
+  smoothSpeed: 0.03
 --- !u!1 &1938284801
 GameObject:
   m_ObjectHideFlags: 0
@@ -3409,7 +3412,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13c30223f6d773d4a98f2c546fdfa843, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 15
+  movementSpeed: 300
 --- !u!114 &136306802738871468
 MonoBehaviour:
   m_ObjectHideFlags: 0
