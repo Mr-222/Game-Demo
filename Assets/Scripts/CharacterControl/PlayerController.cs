@@ -1,59 +1,48 @@
 using UnityEngine;
 
-[RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
-    private CharacterController _controller;
+    private Rigidbody rb;
+    private Animator anim;
     
     [SerializeField]
     private float movementSpeed = 5;
     
-    [SerializeField]
-    private float rotationSpeed = 10;
-    private Animator anim;
-    public Camera followCamera { get; set; }
-
-    //public bool attack;
-
-    //public GameObject enemy;
-    
     void Start()
     {
-        _controller = GetComponent<CharacterController>();
         anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody>();
     }
     
     void Update()
     {
-        //attack = enemy;
-
-        //if (attack)
-        //{
-        //    if (Input.GetKeyDown(KeyCode.F))
-        //    {
-
-        //        enemy.GetComponent<HPScript>().hp -= 5;
-        //    }
-        //}
         Movement();
-
     }
 
     void Movement()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
-        anim.SetFloat("velx", horizontalInput);
-        anim.SetFloat("vely", verticalInput);
-        Vector3 movementInput = Quaternion.Euler(0, followCamera.transform.eulerAngles.y, 0) * new Vector3(horizontalInput, 0, verticalInput);
+        
+        // Translation
+        Vector3 movementInput = new Vector3(horizontalInput, 0, verticalInput);
         Vector3 movementDirection = movementInput.normalized;
+        Vector3 movement = movementDirection * movementSpeed * Time.deltaTime;
+        rb.MovePosition(transform.position + movement);
 
-        if (movementDirection != Vector3.zero)
+        // Rotate toward mouse position
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit))
         {
-            Quaternion desiredRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
-            transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, Time.deltaTime * rotationSpeed);
+            Vector3 lookAtPosition = new Vector3(hit.point.x, transform.position.y, hit.point.z);
+            transform.LookAt(lookAtPosition);
         }
-
-        _controller.SimpleMove(movementDirection * movementSpeed * Time.deltaTime);
+        
+        // Control animation
+        float vely = Vector3.Dot(transform.forward, movementDirection);
+        float velx = Vector3.Dot(transform.right, movementDirection);
+        anim.SetFloat("velx", velx);
+        anim.SetFloat("vely", vely);
     }
 }
