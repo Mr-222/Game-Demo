@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
         _controller = GetComponent<CharacterController>();
         anim = GetComponent<Animator>();
     }
-    
+
     void Update()
     {
         //attack = enemy;
