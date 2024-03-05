@@ -26,7 +26,7 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
-        target.gameObject.GetComponent<PlayerController>().followCamera = GetComponent<Camera>();
+        //target.gameObject.GetComponent<PlayerController>().followCamera = GetComponent<Camera>();
     }
 
     void Update()
