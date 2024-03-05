@@ -10,7 +10,7 @@ public class Attacker : MonoBehaviour
     {
         if (other.gameObject.CompareTag("enemy"))
         {
-            transform.parent.GetComponent<CollisionBridge>().add_enemy(other.GetComponent<HPScript>());
+            transform.parent.GetComponent<CollisionBridge>().add_enemy(other.GetComponent<CharacterStats>());
         }
     }
 
@@ -19,7 +19,7 @@ public class Attacker : MonoBehaviour
 
         if (other.gameObject.CompareTag("enemy"))
         {
-            transform.parent.GetComponent<CollisionBridge>().remove_enemy(other.GetComponent<HPScript>());
+            transform.parent.GetComponent<CollisionBridge>().remove_enemy(other.GetComponent<CharacterStats>());
         }
 
     }
