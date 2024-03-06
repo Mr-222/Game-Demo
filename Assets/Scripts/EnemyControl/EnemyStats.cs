@@ -9,7 +9,7 @@ public class EnemyStats : CharacterStats
     // Start is called before the first frame update
     void Start()
     {
-        maxHealth = 100; //placeholder for now
+        //maxHealth = 100; //placeholder for now
         currentHealth = maxHealth;
         enemyHealthBar.SetMaxHealth(maxHealth);
     }

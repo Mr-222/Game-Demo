@@ -39184,9 +39184,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1afeb929c125594e943943818032e13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackInterval: 0.1
+  canAttack: 1
   _name: Meteors
   radius: 5
-  damage: 0
+  damage: 10
   effect: 
   targetLayer:
     serializedVersion: 2
