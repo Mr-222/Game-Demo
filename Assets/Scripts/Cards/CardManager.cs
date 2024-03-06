@@ -26,8 +26,8 @@ public class CardManager : MonoBehaviour
             hand[i].Init(type, tex);
             hand[i].UpdateFace();
             // Put in the lower left corner of the screen
-            hand[i].transform.position = overlayCamera.ScreenToWorldPoint(new Vector3(
-                Screen.width / 20 + i * Screen.width / 10, Screen.height / 10, 1)
+            hand[i].transform.position = overlayCamera.ScreenToWorldPoint(
+                new Vector3((i + 1) * Screen.width / 10 - Screen.width / 20, Screen.height / 8, 1)
             );
         }
         hand[0].transform.position += Vector3.up * .5f;
@@ -72,7 +72,9 @@ public class CardManager : MonoBehaviour
     {
         // Other cards move left
         for (int i = index + 1; i < hand.Count; i++)
-            hand[i].transform.position = overlayCamera.ScreenToWorldPoint(new Vector3(80 + (i - 1) * 110, 80, 1));
+            hand[i].transform.position = overlayCamera.ScreenToWorldPoint(
+                new Vector3(i * Screen.width / 10 - Screen.width / 20, Screen.height / 8, 1)
+                );
         
         // Destroy selected card, insert it into the deck
         var selectedCard = hand[index];
@@ -87,7 +89,9 @@ public class CardManager : MonoBehaviour
         hand.Add(cardObj.GetComponent<Card>());
         hand[hand.Count - 1].Init(type, tex);
         hand[hand.Count - 1].UpdateFace();
-        hand[hand.Count - 1].transform.position = overlayCamera.ScreenToWorldPoint(new Vector3(80 + (hand.Count - 1) * 110, 80, 1));
+        hand[hand.Count - 1].transform.position = overlayCamera.ScreenToWorldPoint(
+            new Vector3(Screen.width / 10 * hand.Count - Screen.width / 20, Screen.height / 8, 1)
+            );
         
         curr = 1;
         hand[0].transform.position += Vector3.up * .5f;
