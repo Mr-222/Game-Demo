@@ -26,7 +26,9 @@ public class CardManager : MonoBehaviour
             hand[i].Init(type, tex);
             hand[i].UpdateFace();
             // Put in the lower left corner of the screen
-            hand[i].transform.position = overlayCamera.ScreenToWorldPoint(new Vector3(80 + i * 110, 80, 1));
+            hand[i].transform.position = overlayCamera.ScreenToWorldPoint(new Vector3(
+                Screen.width / 20 + i * Screen.width / 10, Screen.height / 10, 1)
+            );
         }
         hand[0].transform.position += Vector3.up * .5f;
     }
