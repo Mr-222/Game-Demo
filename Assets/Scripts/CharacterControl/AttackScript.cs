@@ -19,17 +19,13 @@ public class AttackScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F)&&canAttack)
+        if (Input.GetKey(KeyCode.Mouse0)&&canAttack)
         {
             StartCoroutine(Attack1());
-            //anim.SetTrigger("n_attack");
-            //GameObject fireBall = Instantiate(fireBallPrefab, firePos.transform.position, firePos.transform.rotation);
-            //fireBall.GetComponent<Rigidbody>().velocity = firePos.transform.forward * fireballSpeed;
         }
     }
 
     IEnumerator Attack1() {
-    anim.SetTrigger("n_attack");
     canAttack = false;
      yield return new WaitForSeconds(.5f);
     GameObject fireBall = Instantiate(fireBallPrefab, firePos.transform.position, firePos.transform.rotation);

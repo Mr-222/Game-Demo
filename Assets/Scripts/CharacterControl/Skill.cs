@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class Skill : MonoBehaviour
 {
+    public float attackInterval= 0f;
+    public bool canAttack;
+    public bool oneTimeAttack;
     public string _name;
     public float radius;
-    public float damage;
+    public int damage;
     public string effect;
     public LayerMask targetLayer;
     private ParticleSystem _particleSystem;
@@ -26,7 +29,7 @@ public class Skill : MonoBehaviour
 
     void StopEmitting() {
         // Check if the particle system is emitting particles
-        if (!gameObject.activeSelf ||!transform.GetChild(0).gameObject.activeSelf)
+        if (!transform.GetChild(0).gameObject.activeSelf)
         {
             Destroy(gameObject);
         }
@@ -38,17 +41,27 @@ public class Skill : MonoBehaviour
         // Iterate through colliders to find enemies
         foreach (Collider collider in colliders)
         {
-            Debug.Log("hit enemy");
-            // Assuming enemies have a "Health" component
-            //Health enemyHealth = collider.GetComponent<Health>();
-            //if (enemyHealth != null)
-            //{
-            //    // Deal damage or perform other actions
-            //    enemyHealth.TakeDamage(10); // Example damage value
-            //}
+            if (collider.CompareTag("enemy") && canAttack) {
+                if (!oneTimeAttack)
+                {
+                    collider.gameObject.GetComponent<EnemyStats>().TakeDamage(damage);
+                    StartCoroutine(CoolDownTimer());
+                }
+                else {
+                    attackInterval -= Time.deltaTime;
+                    if (attackInterval <= 0) {
+                        attackInterval = 1000;
+                        collider.gameObject.GetComponent<EnemyStats>().TakeDamage(damage);
+                    }
+                }
+            }
         }
     }
-
+    IEnumerator CoolDownTimer() {
+        canAttack = false;
+        yield return new WaitForSeconds(attackInterval);
+        canAttack = true;
+    }
         void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
