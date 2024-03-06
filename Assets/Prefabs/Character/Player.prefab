@@ -985,8 +985,8 @@ GameObject:
   - component: {fileID: 2085449965171895176}
   - component: {fileID: 2037360318833828548}
   - component: {fileID: 2037360318833828551}
-  - component: {fileID: 2037360318833828545}
   - component: {fileID: 2037360318833828544}
+  - component: {fileID: 752337810}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1063,24 +1063,9 @@ MonoBehaviour:
   dashCooldown: 2
   dashDuration: 0.5
   jumpCooldown: 1
-  jumpPower: 5
+  jumpPower: 300
+  lastJumpPressed: 0
   movementSpeed: 0.1
---- !u!114 &2037360318833828545
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2136401604163122336}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30bc7bfd0f560e14cbeba7fcd8ddebd4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  firePos: {fileID: 2135385973675906041}
-  fireBallPrefab: {fileID: 8001966796046086944, guid: 63947fc051e07874698b9f31880e4cb0,
-    type: 3}
-  fireballSpeed: 30
 --- !u!54 &2037360318833828544
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1097,6 +1082,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &752337810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2136401604163122336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5107fc7c3dac35349975e20cd7bc04a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillPrefabs:
+  - {fileID: 8378648546881499446, guid: 9c2eacd99e0c28b4687384151aac4913, type: 3}
+  - {fileID: 2350352972636314804, guid: 15a2ad2a30dc5d24e8bc145ca00be655, type: 3}
+  - {fileID: 7957833072274404953, guid: bf61d98733aa7b94e988c1969d1773b1, type: 3}
+  - {fileID: 161766660727748596, guid: 0691b3c41d072ff4ab49ef16b7d5e471, type: 3}
+  firePos: {fileID: 2135385973675906041}
+  fireBallPrefab: {fileID: 8001966796046086944, guid: 63947fc051e07874698b9f31880e4cb0,
+    type: 3}
+  fireballSpeed: 30
 --- !u!1 &2136414650897810664
 GameObject:
   m_ObjectHideFlags: 0

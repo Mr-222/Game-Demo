@@ -11,16 +11,22 @@ public class PlayerController : MonoBehaviour
     public float dashDuration = .5f;
     public float jumpCooldown = 1f;
     public float jumpPower = 5f;
+    public float lastJumpPressed;
     private bool canDash;
     private bool isDashing;
     private bool isJumping;
     private bool isGrounded;
     private bool isMoving;
+    private bool isFalling;
+    private bool canJump;
     [SerializeField]
     private float movementSpeed = 0.1f;
     
     void Start()
     {
+        isGrounded = true;
+        isFalling = false;
+        canJump = true;
         canDash = true;
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
@@ -28,11 +34,43 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        Debug.DrawRay(transform.position+Vector3.up*.5f, Vector3.down * .65f, Color.red);
+        if (Physics.Raycast(rb.transform.position + Vector3.up * .5f, Vector3.down, out RaycastHit groundHit,.8f))
+        {
+            if (groundHit.collider.CompareTag("Ground")) {
+                isFalling = false;
+                isGrounded = true;
+                canJump = true;
+                anim.SetBool("IsGrounded", isGrounded);
+                anim.SetBool("IsJumping", false);
+                anim.SetBool("IsFalling", isFalling);
+            }
+        }
+        else {
+            canJump = false;
+            isGrounded = false;
+            isFalling = true;
+            anim.SetBool("IsFalling", isFalling);
+            anim.SetBool("IsJumping", false);
+            anim.SetBool("IsGrounded", isGrounded);
+        }
+        if (Time.time - lastJumpPressed > jumpCooldown&& isGrounded) {
+            canJump = true;
+        }
+        if (isGrounded && canJump && Input.GetKeyDown(KeyCode.Space)) {
+            Debug.Log("Jump");
+            lastJumpPressed = Time.time;
+            Jump();
+            isJumping = true;
+            anim.SetBool("IsJumping", isJumping);
+            canJump = false;
+            isGrounded = false;
+        }
+
         if (canDash && Input.GetKeyDown(KeyCode.LeftShift))
         {
             StartCoroutine(Dash());
         }
-        //if(isGrounded &&)
     }
 
     private void FixedUpdate()
@@ -66,7 +104,12 @@ public class PlayerController : MonoBehaviour
         anim.SetFloat("velx", velx);
         anim.SetFloat("vely", vely);
     }
-
+    void Jump() {
+        Debug.Log("Jump()");
+        rb.AddForce(jumpPower * Vector3.up,ForceMode.Impulse);
+        isJumping = false;
+        canJump = true;
+    }
     IEnumerator Dash()
     {
         canDash = false;

@@ -464,16 +464,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2037360318833828545, guid: 7d8624544d77e4b4fa3278d619f31616,
-        type: 3}
-      propertyPath: fireballSpeed
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 2037360318833828551, guid: 7d8624544d77e4b4fa3278d619f31616,
-        type: 3}
-      propertyPath: movementSpeed
-      value: 0.1
-      objectReference: {fileID: 0}
     - target: {fileID: 2136401604163122336, guid: 7d8624544d77e4b4fa3278d619f31616,
         type: 3}
       propertyPath: m_Name
@@ -482,7 +472,7 @@ PrefabInstance:
     - target: {fileID: 2138561006282157752, guid: 7d8624544d77e4b4fa3278d619f31616,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2138561006282157752, guid: 7d8624544d77e4b4fa3278d619f31616,
         type: 3}
@@ -684,8 +674,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 602607905}
-  offset: {x: 0, y: 10, z: -4}
-  viewingAngle: {x: 60, y: 0, z: 0}
+  offset: {x: 0, y: 10, z: -5}
+  viewingAngle: {x: 50, y: 0, z: 0}
   threshold: 3
   smoothSpeed: 0.3
 --- !u!114 &1268282845
@@ -786,55 +776,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1341401362
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1341401364}
-  - component: {fileID: 1341401363}
-  m_Layer: 0
-  m_Name: Skill Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1341401363
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1341401362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5107fc7c3dac35349975e20cd7bc04a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillPrefabs:
-  - {fileID: 8378648546881499446, guid: 9c2eacd99e0c28b4687384151aac4913, type: 3}
-  - {fileID: 2350352972636314804, guid: 15a2ad2a30dc5d24e8bc145ca00be655, type: 3}
-  - {fileID: 7957833072274404953, guid: bf61d98733aa7b94e988c1969d1773b1, type: 3}
-  - {fileID: 161766660727748596, guid: 0691b3c41d072ff4ab49ef16b7d5e471, type: 3}
---- !u!4 &1341401364
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1341401362}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1938284801
 GameObject:

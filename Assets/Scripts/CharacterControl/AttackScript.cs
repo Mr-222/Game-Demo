@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AttackScript : MonoBehaviour
 {
+    public GameObject[] skillPrefabs;
+    private GameObject curSkill;
     public GameObject firePos;
     public GameObject fireBallPrefab;
     public float fireballSpeed = 10f;
@@ -12,24 +14,53 @@ public class AttackScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        anim = GetComponent<Animator>();
         canAttack = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Mouse0)&&canAttack)
+        if (Input.GetKey(KeyCode.Mouse0) && canAttack&& curSkill == null)
         {
             StartCoroutine(Attack1());
         }
+        if (Input.GetKeyDown(KeyCode.Alpha1)) curSkill = skillPrefabs[0];
+        if (Input.GetKeyDown(KeyCode.Alpha2)) curSkill = skillPrefabs[1];
+        if (Input.GetKeyDown(KeyCode.Alpha3)) curSkill = skillPrefabs[2];
+        if (Input.GetKeyDown(KeyCode.Alpha4)) curSkill = skillPrefabs[3];
+        if(curSkill) PlaceSkillinScene();
     }
 
-    IEnumerator Attack1() {
-    canAttack = false;
-     yield return new WaitForSeconds(.5f);
-    GameObject fireBall = Instantiate(fireBallPrefab, firePos.transform.position, firePos.transform.rotation);
-    fireBall.GetComponent<Rigidbody>().velocity = firePos.transform.forward * fireballSpeed;
+    void PlaceSkillinScene() {
+        if (Input.GetMouseButtonDown(0)) // Check if left mouse button is clicked
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            Vector3 skillPos = new Vector3(0, 0, 0);
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.collider.CompareTag("Ground")) // Check if the collider is tagged as ground
+                {
+                    skillPos = hit.point; // Get the point of intersection
+                }
+                else {
+                    if (Physics.Raycast(hit.collider.transform.position, Vector3.down, out RaycastHit groundHit, Mathf.Infinity))
+                    {
+                        if (groundHit.collider.CompareTag("Ground"))  skillPos = groundHit.point;
+                    }
+                }
+            }
+            Instantiate(curSkill, skillPos, Quaternion.identity);
+            this.curSkill = null;
+        }
+    }
+
+    IEnumerator Attack1()
+    {
+        canAttack = false;
+        yield return new WaitForSeconds(.5f);
+        GameObject fireBall = Instantiate(fireBallPrefab, firePos.transform.position, firePos.transform.rotation);
+        fireBall.GetComponent<Rigidbody>().velocity = firePos.transform.forward * fireballSpeed;
         canAttack = true;
     }
 }
