@@ -8,6 +8,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource sfxSource;
 
     [SerializeField] private AudioClip coinSound;
+    [SerializeField] private AudioClip[] skillSounds;
     
     void Awake()
     {
@@ -44,5 +45,11 @@ public class AudioManager : MonoBehaviour
     public void playCoinSound()
     {
         PlaySfx(coinSound);
+    }
+    
+    public void playSkillSound(CardType cardType)
+    {
+        int index = (int)cardType;
+        PlaySfx(skillSounds[index]);
     }
 }

@@ -1,6 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class AttackScript : MonoBehaviour
 {
@@ -11,7 +11,7 @@ public class AttackScript : MonoBehaviour
     public float fireballSpeed = 10f;
     private Animator anim;
     private bool canAttack;
-    // Start is called before the first frame update
+    
     void Start()
     {
         canAttack = true;
@@ -24,13 +24,15 @@ public class AttackScript : MonoBehaviour
         {
             StartCoroutine(Attack1());
         }
-        if (Input.GetKeyDown(KeyCode.Alpha1)) curSkill = skillPrefabs[0];
-        if (Input.GetKeyDown(KeyCode.Alpha2)) curSkill = skillPrefabs[1];
-        if (Input.GetKeyDown(KeyCode.Alpha3)) curSkill = skillPrefabs[2];
-        if (Input.GetKeyDown(KeyCode.Alpha4)) curSkill = skillPrefabs[3];
-        if(curSkill) PlaceSkillinScene();
     }
-
+    
+    public void SetCurrSkill(CardType cardType)
+    {
+        int skillIndex = (int)cardType;
+        curSkill = skillPrefabs[skillIndex];
+        PlaceSkillinScene();
+    }
+    
     void PlaceSkillinScene() {
         if (Input.GetMouseButtonDown(0)) // Check if left mouse button is clicked
         {

@@ -1,12 +1,28 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CardManager : MonoBehaviour
 {
+    public static CardManager instance;
+    
     private Camera overlayCamera;
     private CardDeck deck;
     private List<Card> hand = new List<Card>(4);
-    private int curr = 1;
+    private int curr = -1;
+    
+    public UnityEvent<CardType> OnSkillTriggered;
+    
+    void Awake()
+    {
+        // Ensure there's only one CardManager instance (Singleton Pattern)
+        if (instance == null)
+            instance = this;
+        else if (instance != this)
+            Destroy(gameObject);
+
+        DontDestroyOnLoad(gameObject); // Don't destroy this object when loading new scenes
+    }
     
     void Start()
     {
@@ -30,46 +46,12 @@ public class CardManager : MonoBehaviour
                 new Vector3((i + 1) * Screen.width / 10 - Screen.width / 20, Screen.height / 8, 1)
             );
         }
-        hand[0].transform.position += Vector3.up * .5f;
-    }
-
-    private void Update()
-    {
-        // Change the selected card
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            hand[curr - 1].transform.position -= Vector3.up * .5f; 
-            curr = 1;
-            hand[curr - 1].transform.position += Vector3.up * .5f;
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            hand[curr - 1].transform.position -= Vector3.up * .5f; 
-            curr = 2;
-            hand[curr - 1].transform.position += Vector3.up * .5f;
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            hand[curr - 1].transform.position -= Vector3.up * .5f; 
-            curr = 3;
-            hand[curr - 1].transform.position += Vector3.up * .5f;
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            hand[curr - 1].transform.position -= Vector3.up * .5f; 
-            curr = 4;
-            hand[curr - 1].transform.position += Vector3.up * .5f;
-        }
-        
-        // Trigger selected card
-        if (Input.GetKeyDown(KeyCode.Space))
-        { 
-            TriggerCard(curr - 1);
-        }
     }
 
     private void TriggerCard(int index)
     {
+        OnSkillTriggered.Invoke(hand[index].type);
+        
         // Other cards move left
         for (int i = index + 1; i < hand.Count; i++)
             hand[i].transform.position = overlayCamera.ScreenToWorldPoint(
@@ -92,8 +74,18 @@ public class CardManager : MonoBehaviour
         hand[hand.Count - 1].transform.position = overlayCamera.ScreenToWorldPoint(
             new Vector3(Screen.width / 10 * hand.Count - Screen.width / 20, Screen.height / 8, 1)
             );
-        
-        curr = 1;
-        hand[0].transform.position += Vector3.up * .5f;
+    }
+
+    public void ChangeCurrSkill(int prev, int curr)
+    {
+        if (prev != -1)
+            hand[prev].transform.position -= Vector3.up * .5f;
+        this.curr = curr;
+        hand[this.curr].transform.position += Vector3.up * .5f;
+    }
+    
+    public void UseSkill()
+    {
+        TriggerCard(curr);
     }
 }
