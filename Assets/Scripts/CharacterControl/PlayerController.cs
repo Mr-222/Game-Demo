@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
@@ -21,6 +23,12 @@ public class PlayerController : MonoBehaviour
     private bool canJump;
     [SerializeField]
     private float movementSpeed = 0.1f;
+    
+    // skill related
+    public UnityEvent<int, int> OnCardChanged;
+    public UnityEvent OnSkillUsed;
+    int totalSkillCount = Enum.GetValues(typeof(CardType)).Length;
+    int currSkill = -1;
     
     void Start()
     {
@@ -58,7 +66,6 @@ public class PlayerController : MonoBehaviour
             canJump = true;
         }
         if (isGrounded && canJump && Input.GetKeyDown(KeyCode.Space)) {
-            Debug.Log("Jump");
             lastJumpPressed = Time.time;
             Jump();
             isJumping = true;
@@ -71,6 +78,8 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(Dash());
         }
+        
+        HandleSkill();
     }
 
     private void FixedUpdate()
@@ -121,5 +130,35 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector3(0,0,0);
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
+    }
+
+    void HandleSkill()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            OnCardChanged.Invoke(currSkill, 0);
+            currSkill = 0;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            OnCardChanged.Invoke(currSkill, 1);
+            currSkill = 1;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            OnCardChanged.Invoke(currSkill, 2);
+            currSkill = 2;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            OnCardChanged.Invoke(currSkill, 3);
+            currSkill = 3;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse0) && currSkill != -1)
+        {
+            OnSkillUsed.Invoke();
+            currSkill = -1;
+        }
     }
 }
