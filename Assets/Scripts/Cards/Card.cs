@@ -3,10 +3,10 @@ using UnityEngine;
 
 public enum CardType
 {
-    Fire,
-    Ice,
+    Explosion = 0,
     Laser,
-    Meteorite 
+    Meteor,
+    Snow 
 }
 
 public class Card : MonoBehaviour

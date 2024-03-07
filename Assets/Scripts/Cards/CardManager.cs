@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CardManager : MonoBehaviour
 {
@@ -7,6 +8,8 @@ public class CardManager : MonoBehaviour
     private CardDeck deck;
     private List<Card> hand = new List<Card>(4);
     private int curr = -1;
+    
+    public UnityEvent<CardType> OnSkillTriggered;
     
     void Start()
     {
@@ -34,6 +37,8 @@ public class CardManager : MonoBehaviour
 
     private void TriggerCard(int index)
     {
+        OnSkillTriggered.Invoke(hand[index].type);
+        
         // Other cards move left
         for (int i = index + 1; i < hand.Count; i++)
             hand[i].transform.position = overlayCamera.ScreenToWorldPoint(

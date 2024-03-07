@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AttackScript : MonoBehaviour
@@ -24,13 +23,15 @@ public class AttackScript : MonoBehaviour
         {
             StartCoroutine(Attack1());
         }
-        if (Input.GetKeyDown(KeyCode.Alpha1)) curSkill = skillPrefabs[0];
-        if (Input.GetKeyDown(KeyCode.Alpha2)) curSkill = skillPrefabs[1];
-        if (Input.GetKeyDown(KeyCode.Alpha3)) curSkill = skillPrefabs[2];
-        if (Input.GetKeyDown(KeyCode.Alpha4)) curSkill = skillPrefabs[3];
-        if(curSkill) PlaceSkillinScene();
     }
-
+    
+    public void SetCurrSkill(CardType cardType)
+    {
+        int skillIndex = (int)cardType;
+        curSkill = skillPrefabs[skillIndex];
+        PlaceSkillinScene();
+    }
+    
     void PlaceSkillinScene() {
         if (Input.GetMouseButtonDown(0)) // Check if left mouse button is clicked
         {
