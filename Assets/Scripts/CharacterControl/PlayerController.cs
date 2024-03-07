@@ -27,7 +27,6 @@ public class PlayerController : MonoBehaviour
     // skill related
     public UnityEvent<int, int> OnCardChanged;
     public UnityEvent OnSkillUsed;
-    int totalSkillCount = Enum.GetValues(typeof(CardType)).Length;
     int currSkill = -1;
     
     void Start()
@@ -114,7 +113,6 @@ public class PlayerController : MonoBehaviour
         anim.SetFloat("vely", vely);
     }
     void Jump() {
-        Debug.Log("Jump()");
         rb.AddForce(jumpPower * Vector3.up,ForceMode.Impulse);
         isJumping = false;
         canJump = true;

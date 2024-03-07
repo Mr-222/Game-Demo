@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class AttackScript : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class AttackScript : MonoBehaviour
     public float fireballSpeed = 10f;
     private Animator anim;
     private bool canAttack;
-    // Start is called before the first frame update
+    
     void Start()
     {
         canAttack = true;
