@@ -9,16 +9,17 @@ public class EnemyLocomotionController : MonoBehaviour
 
 
     EnemyManager enemyManager;
+    EnemyAnimator enemyAnimator;
 
     [SerializeField] LayerMask detectLayer;
     public CharacterStats currentTarget;
     NavMeshAgent navMeshAgent;
-    Rigidbody enemyRB;
+    public Rigidbody enemyRB;
 
     public float distantToTarget;
     [Header("Locomotion Setting")]
     [Tooltip("Stopping Distance")]
-    [SerializeField] float stoppingDistance = 1f;
+    public float stoppingDistance = 1f;
     [Tooltip("Rotation Speed")]
     [SerializeField] float RotationSpeed = 20f;
 
@@ -30,6 +31,7 @@ public class EnemyLocomotionController : MonoBehaviour
         enemyManager = GetComponent<EnemyManager>();
         navMeshAgent = GetComponentInChildren<NavMeshAgent>();
         enemyRB = GetComponent<Rigidbody>();
+        enemyAnimator = GetComponent<EnemyAnimator>();
     }
 
     private void Start()
@@ -61,6 +63,10 @@ public class EnemyLocomotionController : MonoBehaviour
 
     public void HandleMoveToTarget()
     {
+        if (enemyManager.IS_IN_ACTION)
+        {
+            return;
+        }
         Vector3 targetDirection = currentTarget.transform.position - transform.position;
         float angleToTarget = Mathf.Abs(Vector3.Angle(targetDirection, transform.forward));
         distantToTarget = Vector3.Distance(currentTarget.transform.position, transform.position);
@@ -68,12 +74,14 @@ public class EnemyLocomotionController : MonoBehaviour
         //if we are doing something, we first need to terminate the action
         if (enemyManager.IS_IN_ACTION)
         {
+            enemyAnimator.anim.SetFloat("Vertical", 0, 0.1f, Time.deltaTime);
             navMeshAgent.enabled = false;
         }
         else
         {
             if(distantToTarget > stoppingDistance)
             {
+                enemyAnimator.anim.SetFloat("Vertical", 1, 0.1f, Time.deltaTime);
                 targetDirection.Normalize();
                 targetDirection.y = 0;
 
@@ -85,7 +93,7 @@ public class EnemyLocomotionController : MonoBehaviour
             }
             else
             {
-
+                enemyAnimator.anim.SetFloat("Vertical", 0, 0.1f, Time.deltaTime);
             }
 
         }
@@ -99,10 +107,21 @@ public class EnemyLocomotionController : MonoBehaviour
     {
         if (enemyManager.IS_IN_ACTION)
         {
+            Vector3 direction = currentTarget.transform.position - transform.position;
+            direction.y = 0;
+            direction.Normalize();
 
+            if(direction == Vector3.zero)
+            {
+                direction = transform.forward;
+            }
+
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, RotationSpeed / Time.deltaTime);
         }
         else
         {
+            Vector3 reltiveDir = transform.InverseTransformDirection(navMeshAgent.desiredVelocity);
             Vector3 chaseVelocity = enemyRB.velocity;
             navMeshAgent.enabled = true;
             navMeshAgent.SetDestination(currentTarget.transform.position);
