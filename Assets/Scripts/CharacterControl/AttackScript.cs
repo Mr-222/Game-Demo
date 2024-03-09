@@ -61,8 +61,12 @@ public class AttackScript : MonoBehaviour
     {
         canAttack = false;
         yield return new WaitForSeconds(.5f);
+        Vector3 temp = Input.mousePosition;
+        temp.z = Camera.main.transform.position.y;
+        Vector3 mPosition = Camera.main.ScreenToWorldPoint(temp);
+        mPosition.y = firePos.transform.position.y;
         GameObject fireBall = Instantiate(fireBallPrefab, firePos.transform.position, firePos.transform.rotation);
-        fireBall.GetComponent<Rigidbody>().velocity = firePos.transform.forward * fireballSpeed;
+        fireBall.GetComponent<Rigidbody>().velocity = (mPosition-firePos.transform.position).normalized * fireballSpeed;
         canAttack = true;
     }
 }
