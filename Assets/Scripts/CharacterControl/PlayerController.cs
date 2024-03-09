@@ -28,6 +28,9 @@ public class PlayerController : MonoBehaviour
     public UnityEvent<int, int> OnCardChanged;
     public UnityEvent OnSkillUsed;
     int currSkill = -1;
+
+
+    PlayerHp playerHp;
     
     void Start()
     {
@@ -37,6 +40,7 @@ public class PlayerController : MonoBehaviour
         canDash = true;
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
+        playerHp = GetComponent<PlayerHp>();
     }
 
     void Update()
@@ -72,6 +76,18 @@ public class PlayerController : MonoBehaviour
             canJump = false;
             isGrounded = false;
         }
+
+
+        if (!canDash&& isDashing)
+        {
+            playerHp.Addxp(-2f);
+        }
+        if (!canDash && !isDashing)
+        {
+            playerHp.Addxp(.5f);
+        }
+
+
 
         if (canDash && Input.GetKeyDown(KeyCode.LeftShift))
         {
@@ -123,10 +139,15 @@ public class PlayerController : MonoBehaviour
         isDashing = true;
         Vector3 movementDirection = new Vector3(Input.GetAxis("Horizontal"),0, Input.GetAxis("Vertical")).normalized;
         rb.velocity = movementDirection * dashPower;
+
+        
+
         yield return new WaitForSeconds(dashDuration);
         isDashing = false;
         rb.velocity = new Vector3(0,0,0);
+       
         yield return new WaitForSeconds(dashCooldown);
+    
         canDash = true;
     }
 
