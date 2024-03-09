@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,8 @@ public class PlayerStats : CharacterStats
     private Animator anim;
     public float maxMana;
     private float currentMana;
+    PlayerHp playerHp;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -15,18 +18,15 @@ public class PlayerStats : CharacterStats
         currentHealth = maxHealth;
         currentMana = maxMana;
         anim = GetComponent<Animator>();
+        playerHp = GetComponent<PlayerHp>();
     }
-
-    //// Update is called once per frame
-    //void Update()
-    //{
-
-    //}
+    
 
     public override void TakeDamage(int damage)
     {
+        anim.SetTrigger("GetHit");
         currentHealth -= damage;
-
+        playerHp.Addhp(-damage);
         if (currentHealth <= 0)
         {
             currentHealth = 0;
@@ -35,8 +35,10 @@ public class PlayerStats : CharacterStats
         }
     }
 
-    public void ReduceMana(int mana) {
-    
+    public void UpdateMana(float mana)
+    {
+            currentMana = currentMana + mana;
+            playerHp.Addmp(mana);
     }
     protected override void handleDeath()
     {

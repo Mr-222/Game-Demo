@@ -8,7 +8,7 @@ public class PlayerHp : MonoBehaviour
 
     public float hpmax=100, mpmax=100, xpmax=10;
 
-   public float hpvalue, mpvalue, xpvalue;
+    public float hpvalue, mpvalue, xpvalue;
     public Image hpbar, mpbar, xpbar;
 
     public GameObject winpanel,loserpanel;
@@ -32,7 +32,7 @@ public class PlayerHp : MonoBehaviour
         else
         {
             hpbar.fillAmount = 0;
-            PlayerDie();
+            StartCoroutine(PlayerDie());
         }
     }
 
@@ -83,8 +83,9 @@ public class PlayerHp : MonoBehaviour
         }
     }
 
-    public void PlayerDie()
+    IEnumerator PlayerDie()
     {
+        yield return new WaitForSeconds(3f);
         loserpanel.SetActive(true);
         this.GetComponent<PlayerController>().enabled = false;
         this.GetComponent<AttackScript>().enabled = false;
@@ -100,7 +101,7 @@ public class PlayerHp : MonoBehaviour
         this.GetComponent<PlayerController>().enabled = false;
         this.GetComponent<AttackScript>().enabled = false;
       
-            Time.timeScale = 0;
+        Time.timeScale = 0;
         this.enabled = false;
     }
 }

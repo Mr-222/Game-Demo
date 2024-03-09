@@ -22,6 +22,7 @@ public class EnemyStats : CharacterStats
 
     public override void TakeDamage(int damage)
     {
+        Debug.Log("Enemy  took damage");
         currentHealth -= damage;
         enemyHealthBar.SetHealth(currentHealth);
 

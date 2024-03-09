@@ -9786,7 +9786,8 @@ MonoBehaviour:
   oneTimeAttack: 0
   _name: Snow
   radius: 4
-  damage: 20
+  damage: 3
+  manaCost: -10
   effect: 
   targetLayer:
     serializedVersion: 2
