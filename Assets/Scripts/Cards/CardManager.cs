@@ -4,25 +4,12 @@ using UnityEngine.Events;
 
 public class CardManager : MonoBehaviour
 {
-    public static CardManager instance;
-    
     private Camera overlayCamera;
     private CardDeck deck;
     private List<Card> hand = new List<Card>(4);
     private int curr = -1;
     
     public UnityEvent<CardType> OnSkillTriggered;
-    
-    void Awake()
-    {
-        // Ensure there's only one CardManager instance (Singleton Pattern)
-        if (instance == null)
-            instance = this;
-        else if (instance != this)
-            Destroy(gameObject);
-
-        DontDestroyOnLoad(gameObject); // Don't destroy this object when loading new scenes
-    }
     
     void Start()
     {

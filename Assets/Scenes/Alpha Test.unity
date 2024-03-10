@@ -9007,7 +9007,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1091775648
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17560,6 +17560,11 @@ PrefabInstance:
       propertyPath: hpbar
       value: 
       objectReference: {fileID: 202850028}
+    - target: {fileID: 4843084099134128192, guid: bf29f79b370c0d2478ee0b4a7095f191,
+        type: 3}
+      propertyPath: hpmax
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4843084099134128192, guid: bf29f79b370c0d2478ee0b4a7095f191,
         type: 3}
       propertyPath: mpbar
