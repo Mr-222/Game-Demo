@@ -11,7 +11,7 @@ public class CharacterStats : MonoBehaviour
 
     public virtual void TakeDamage(int damage)
     {
-        
+        Debug.Log("taking Damage");
     }
 
     protected virtual void handleDeath()

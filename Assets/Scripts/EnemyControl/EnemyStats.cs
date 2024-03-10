@@ -5,13 +5,14 @@ using UnityEngine;
 public class EnemyStats : CharacterStats
 {
     Animator anim;
-
+    EnemyManager enemyManager;
     public UIEnemyHealthBar enemyHealthBar;
     // Start is called before the first frame update
 
     private void Awake()
     {
         anim = GetComponent<Animator>();
+        enemyManager = GetComponent<EnemyManager>();
     }
     void Start()
     {
@@ -47,8 +48,14 @@ public class EnemyStats : CharacterStats
 
     protected override void handleDeath()
     {
+        enemyManager.navMeshAgent.enabled = false;
         anim.Play("Die");
         //Destroy(this.gameObject);
+    }
+
+    public void Die()
+    {
+        Destroy(this.gameObject);
     }
 }
 
