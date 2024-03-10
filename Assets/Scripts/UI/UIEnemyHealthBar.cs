@@ -8,7 +8,7 @@ public class UIEnemyHealthBar : MonoBehaviour
     Slider slider;
     float hidden_wait = 0;
 
-    private void Awake()
+    private void OnEnable()
     {
         slider = GetComponentInChildren<Slider>();
     }

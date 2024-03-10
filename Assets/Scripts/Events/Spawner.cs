@@ -25,9 +25,9 @@ public class Spawner : MonoBehaviour
             yield return new WaitForSeconds(spawnInterval); // Wait for specified interval before spawning next prefab
         }
 
-        if(count <= 0)
-        {
-            Destroy(this.gameObject);
-        }
+        //if(count <= 0)
+        //{
+        //    Destroy(this.gameObject);
+        //}
     }
 }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2839809467386624744}
   - component: {fileID: 2839809467371421608}
   - component: {fileID: 2839809467371439624}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Aura
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4805,7 +4805,7 @@ GameObject:
   - component: {fileID: -1979389331741168320}
   - component: {fileID: 3499307966126727959}
   - component: {fileID: 4069360427909288327}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Dark Treant Seed-Green
   m_TagString: Untagged
   m_Icon: {fileID: 0}

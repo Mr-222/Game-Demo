@@ -947,7 +947,7 @@ MonoBehaviour:
   navMeshAgent: {fileID: 0}
   distanceToTarget: 0
   viewAngle: 0
-  maximum_attack_range: 2
+  maximum_attack_range: 8
   rotationSpeed: 40
   currRecovery: 0
 --- !u!195 &2142907798
