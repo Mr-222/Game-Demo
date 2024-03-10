@@ -19,11 +19,21 @@ public class EnemyManager : MonoBehaviour
     [Range(1, 360)]
      int fov;
 
+    public void set_max_detectRadius() {
+        detectRadius = 20f;
+    }
+
+    public void set_max_fov()
+    {
+        fov = 360;
+    }
+
     [SerializeField] private State currentState;
 
     public float DetectionRadius { get { return detectRadius; } }
     public int FOV { get { return fov; } }
     public bool IS_IN_ACTION { get { return isInAction;  } }
+    public State CURRENT_STATE { get { return currentState; } }
 
     public CharacterStats currentTarget;
     [HideInInspector] public NavMeshAgent navMeshAgent;

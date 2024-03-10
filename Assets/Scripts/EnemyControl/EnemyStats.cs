@@ -6,6 +6,7 @@ public class EnemyStats : CharacterStats
 {
     Animator anim;
     EnemyManager enemyManager;
+    [SerializeField] IdleState idleState;
     public UIEnemyHealthBar enemyHealthBar;
     // Start is called before the first frame update
 
@@ -32,6 +33,12 @@ public class EnemyStats : CharacterStats
         if (is_dead)
         {
             return;
+        }
+
+        if(enemyManager.CURRENT_STATE == idleState)
+        {
+            enemyManager.set_max_detectRadius();
+            enemyManager.set_max_fov();
         }
         
         currentHealth -= damage;

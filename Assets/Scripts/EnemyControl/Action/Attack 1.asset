@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Attack 1
   m_EditorClassIdentifier: 
   actionAnimation: HeadAttack
-  attackPower: 10
+  attackPower: 20
   Recovery: 2
   maximumAttackAngle: 35
   minimumAttackAngle: -35

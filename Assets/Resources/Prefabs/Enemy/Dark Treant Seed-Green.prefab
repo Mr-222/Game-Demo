@@ -4911,7 +4911,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c82b0bf7d52e494a82fe474d5e4bb48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  minSpeed: 10
+  maxSpeed: 20
   rb: {fileID: 0}
   timeoutDestructor: 0
 --- !u!54 &-1979389331741168320
@@ -4959,4 +4960,5 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 64
-  damage: 10
+  attack: {fileID: 11400000, guid: ea2ae4f2d71a544bdb924bd878361956, type: 2}
+  destory: 1

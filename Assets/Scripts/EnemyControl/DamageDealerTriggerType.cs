@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DamageDealer : MonoBehaviour
+public class DamageDealerTriggerType : MonoBehaviour
 {
     [SerializeField] LayerMask mask;
     [SerializeField] EnemyAttack attack;
@@ -13,10 +13,9 @@ public class DamageDealer : MonoBehaviour
         damage = attack.attackPower;
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
         
-
         if (((1 << other.gameObject.layer) & mask) != 0) //correct layer
         {
             
@@ -27,4 +26,5 @@ public class DamageDealer : MonoBehaviour
             }
         }
     }
+   
 }
