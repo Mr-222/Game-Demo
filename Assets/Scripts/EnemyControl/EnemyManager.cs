@@ -38,7 +38,7 @@ public class EnemyManager : MonoBehaviour
     [Tooltip("maximum attack range")]
     public float maximum_attack_range = 1.5f;
     [Tooltip("Rotation Speed")]
-    [SerializeField] float rotationSpeed = 20f;
+    public float rotationSpeed = 20f;
 
 
     public float currRecovery = 0; 

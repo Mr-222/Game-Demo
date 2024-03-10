@@ -20,7 +20,9 @@ public class AttackState : State
             return idleState;
         }
 
-        
+
+        HandleRotateTowardsTarget(enemyManager);
+
         if (enemyManager.IS_IN_ACTION)
         {
             return attackDecisionState;
@@ -64,25 +66,29 @@ public class AttackState : State
     }
 
 
+    private void HandleRotateTowardsTarget(EnemyManager enemyManager)
+    {
+        if (enemyManager.isInAction)
+        {
+            enemyManager.navMeshAgent.updateRotation = false;
+            Vector3 direction = enemyManager.currentTarget.transform.position - enemyManager.transform.position;
+            direction.y = 0;
+            direction.Normalize();
 
-    //private void attackTarget()
-    //{
-    //    Debug.Log("isInAction" + isInAction);
+            if(direction == Vector3.zero)
+            {
+                direction = enemyManager.transform.forward;
+            }
 
-    //    if (isInAction) { return; }
-    //    if (curAttack == null)
-    //    {
-    //        getAttackAction();
-    //    }
-    //    else
-    //    {
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            enemyManager.transform.rotation = Quaternion.Slerp(enemyManager.transform.rotation, targetRotation, enemyManager.rotationSpeed / Time.deltaTime); ;
+        }
+        else
+        {
+            enemyManager.navMeshAgent.updateRotation = true;
+        }
+    }
 
-    //        isInAction = true;
-    //        currRecovery = curAttack.Recovery;
-    //        enemyAnimator.PlayAnimation(curAttack.actionAnimation, true);
-    //        curAttack = null;
-    //    }
-    //}
 
     private void getAttackAction(EnemyManager enemyManager)
     {

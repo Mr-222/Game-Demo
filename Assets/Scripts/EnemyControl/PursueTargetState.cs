@@ -23,6 +23,7 @@ public class PursueTargetState : State
             return attackDecisionState;
         }
 
+        HandleRotateTowardsTarget(enemyManager);
 
         //Debug.Log("dist:" + distanceToTarget);
 
@@ -69,5 +70,28 @@ public class PursueTargetState : State
 
         enemyAnimator.anim.SetFloat("Vertical", Mathf.InverseLerp(-1f, 1f, forwardVelocity), 0.1f, Time.deltaTime);
         enemyAnimator.anim.SetFloat("Horizontal", Mathf.InverseLerp(-1f, 1f, rightVelocity), 0.1f, Time.deltaTime);
+    }
+
+    private void HandleRotateTowardsTarget(EnemyManager enemyManager)
+    {
+        if (enemyManager.isInAction)
+        {
+            enemyManager.navMeshAgent.updateRotation = false;
+            Vector3 direction = enemyManager.currentTarget.transform.position - enemyManager.transform.position;
+            direction.y = 0;
+            direction.Normalize();
+
+            if (direction == Vector3.zero)
+            {
+                direction = enemyManager.transform.forward;
+            }
+
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            enemyManager.transform.rotation = Quaternion.Slerp(enemyManager.transform.rotation, targetRotation, enemyManager.rotationSpeed / Time.deltaTime); ;
+        }
+        else
+        {
+            enemyManager.navMeshAgent.updateRotation = true;
+        }
     }
 }
