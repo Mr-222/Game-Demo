@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Events;
 using UnityEngine;
 
 public class EnemyStats : CharacterStats
@@ -8,6 +9,7 @@ public class EnemyStats : CharacterStats
     EnemyManager enemyManager;
     [SerializeField] IdleState idleState;
     public UIEnemyHealthBar enemyHealthBar;
+    public static UnityEvent onEnemyDied = new UnityEvent();
     // Start is called before the first frame update
 
     private void Awake()
@@ -42,7 +44,10 @@ public class EnemyStats : CharacterStats
         }
         
         currentHealth -= damage;
-        anim.Play("TakeDamage");
+        if (!enemyManager.IS_IN_ACTION)
+        {
+            anim.Play("TakeDamage");
+        }
         enemyHealthBar.SetHealth(currentHealth);
 
         if(currentHealth <= 0)
@@ -62,6 +67,7 @@ public class EnemyStats : CharacterStats
 
     public void Die()
     {
+        onEnemyDied?.Invoke();
         Destroy(this.gameObject);
     }
 }

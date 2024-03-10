@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionAnimation: ProjectileAttack
   attackPower: 15
-  Recovery: 2
-  maximumAttackAngle: 35
-  minimumAttackAngle: -35
-  minAttackDist: 0
-  maxAttackDist: 3
+  Recovery: 1
+  maximumAttackAngle: 45
+  minimumAttackAngle: -45
+  minAttackDist: 1
+  maxAttackDist: 8
