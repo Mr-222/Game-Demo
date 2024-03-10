@@ -76,6 +76,15 @@ public class CardManager : MonoBehaviour
             );
     }
 
+    public void CancelCard()
+    {
+        if (curr == -1)
+            return;
+        
+        hand[curr].transform.position -= Vector3.up * .5f;
+        curr = -1;
+    }
+
     public void ChangeCurrSkill(int prev, int curr)
     {
         if (prev != -1)

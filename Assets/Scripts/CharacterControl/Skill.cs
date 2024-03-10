@@ -10,6 +10,7 @@ public class Skill : MonoBehaviour
     public string _name;
     public float radius;
     public int damage;
+    public int manaCost;
     public string effect;
     public LayerMask targetLayer;
     // Start is called before the first frame update

@@ -43968,6 +43968,7 @@ MonoBehaviour:
   _name: Explosion
   radius: 4
   damage: 50
+  manaCost: -20
   effect: 
   targetLayer:
     serializedVersion: 2

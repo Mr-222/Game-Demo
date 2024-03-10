@@ -11,15 +11,18 @@ public class AttackScript : MonoBehaviour
     public float fireballSpeed = 10f;
     private Animator anim;
     private bool canAttack;
+    private PlayerStats _playerStats;
     
     void Start()
     {
+        _playerStats = GetComponent<PlayerStats>();
         canAttack = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        _playerStats.UpdateMana(Time.deltaTime * 3);
         if (Input.GetKey(KeyCode.Mouse0) && canAttack&& curSkill == null)
         {
             StartCoroutine(Attack1());
@@ -52,6 +55,7 @@ public class AttackScript : MonoBehaviour
                     }
                 }
             }
+            _playerStats.UpdateMana(curSkill.GetComponent<Skill>().manaCost);
             Instantiate(curSkill, skillPos, Quaternion.identity);
             this.curSkill = null;
         }
@@ -61,8 +65,12 @@ public class AttackScript : MonoBehaviour
     {
         canAttack = false;
         yield return new WaitForSeconds(.5f);
+        Vector3 temp = Input.mousePosition;
+        temp.z = Camera.main.transform.position.y;
+        Vector3 mPosition = Camera.main.ScreenToWorldPoint(temp);
+        mPosition.y = firePos.transform.position.y;
         GameObject fireBall = Instantiate(fireBallPrefab, firePos.transform.position, firePos.transform.rotation);
-        fireBall.GetComponent<Rigidbody>().velocity = firePos.transform.forward * fireballSpeed;
+        fireBall.GetComponent<Rigidbody>().velocity = (mPosition-firePos.transform.position).normalized * fireballSpeed;
         canAttack = true;
     }
 }
