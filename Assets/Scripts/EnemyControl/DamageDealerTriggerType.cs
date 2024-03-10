@@ -12,19 +12,20 @@ public class DamageDealerTriggerType : MonoBehaviour
     {
         damage = attack.attackPower;
     }
+    public Collider o;
 
     private void OnTriggerEnter(Collider other)
     {
-        
+
+        o = other;
         if (((1 << other.gameObject.layer) & mask) != 0) //correct layer
         {
             
             other.gameObject.GetComponent<CharacterStats>().TakeDamage(damage);
-            if (destory)
-            {
-                Destroy(this.gameObject);
-            }
+
         }
+        print(other.gameObject);
+        Destroy(this.gameObject);
     }
    
 }

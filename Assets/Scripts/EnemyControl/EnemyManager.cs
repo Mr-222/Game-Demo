@@ -12,7 +12,7 @@ public class EnemyManager : MonoBehaviour
     [Header("AI settings")]
     [SerializeField]
     [Tooltip("Detection Radius")]
-    [Range(1f, 100f)]
+    [Range(1f, 150f)]
     float detectRadius = 10f;
     [SerializeField]
     [Tooltip("FOV")]
@@ -20,7 +20,7 @@ public class EnemyManager : MonoBehaviour
      int fov;
 
     public void set_max_detectRadius() {
-        detectRadius = 80f;
+        detectRadius = 150f;
     }
 
     public void set_max_fov()
