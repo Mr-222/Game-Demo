@@ -10,6 +10,8 @@ public class AttackState : State
     [SerializeField] AttackDecisionState attackDecisionState;
     [SerializeField] IdleState idleState;
 
+    public EnemyAttack CURRENT_ATTACK { get { return curAttack; } }
+
 
 
     public override State Tick(EnemyManager enemyManager, EnemyStats stats, EnemyAnimator enemyAnimator)

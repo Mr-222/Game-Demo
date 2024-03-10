@@ -5,27 +5,31 @@ using UnityEngine;
 public class DamageDealerTriggerType : MonoBehaviour
 {
     [SerializeField] LayerMask mask;
-    [SerializeField] EnemyAttack attack;
     [SerializeField] bool destory;
-    int damage;
-    private void Awake()
-    {
-        damage = attack.attackPower;
-    }
-    public Collider o;
+    int damage = 5;
 
+
+
+    public void setDamage(int D) {
+        damage = D;
+    }
+  
     private void OnTriggerEnter(Collider other)
     {
 
-        o = other;
+ 
         if (((1 << other.gameObject.layer) & mask) != 0) //correct layer
         {
             
             other.gameObject.GetComponent<CharacterStats>().TakeDamage(damage);
+            //GetComponent<Collider>().enabled = false; //turn off
 
         }
-        print(other.gameObject);
-        Destroy(this.gameObject);
+        if (destory)
+        {
+            Destroy(this.gameObject);
+        }
+        
     }
    
 }
