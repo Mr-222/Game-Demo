@@ -39186,9 +39186,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackInterval: 0.1
   canAttack: 1
+  oneTimeAttack: 0
   _name: Meteors
   radius: 5
-  damage: 10
+  damage: 3
+  manaCost: -10
   effect: 
   targetLayer:
     serializedVersion: 2

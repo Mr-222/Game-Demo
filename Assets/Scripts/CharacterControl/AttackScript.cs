@@ -11,15 +11,18 @@ public class AttackScript : MonoBehaviour
     public float fireballSpeed = 10f;
     private Animator anim;
     private bool canAttack;
+    private PlayerStats _playerStats;
     
     void Start()
     {
+        _playerStats = GetComponent<PlayerStats>();
         canAttack = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        _playerStats.UpdateMana(Time.deltaTime * 3);
         if (Input.GetKey(KeyCode.Mouse0) && canAttack&& curSkill == null)
         {
             StartCoroutine(Attack1());
@@ -52,6 +55,7 @@ public class AttackScript : MonoBehaviour
                     }
                 }
             }
+            _playerStats.UpdateMana(curSkill.GetComponent<Skill>().manaCost);
             Instantiate(curSkill, skillPos, Quaternion.identity);
             this.curSkill = null;
         }

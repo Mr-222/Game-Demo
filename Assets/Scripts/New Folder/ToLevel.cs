@@ -44,5 +44,4 @@ public class ToLevel : MonoBehaviour
     {
         Time.timeScale = 1;
     }
-
 }

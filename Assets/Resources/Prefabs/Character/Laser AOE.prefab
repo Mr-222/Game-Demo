@@ -24573,6 +24573,7 @@ MonoBehaviour:
   _name: Laser
   radius: 4
   damage: 5
+  manaCost: -15
   effect: 
   targetLayer:
     serializedVersion: 2

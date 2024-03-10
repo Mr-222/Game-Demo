@@ -26,9 +26,14 @@ public class PlayerController : MonoBehaviour
     
     // skill related
     public UnityEvent<int, int> OnCardChanged;
+    public UnityEvent OnSkillCanceled;
     public UnityEvent OnSkillUsed;
     int currSkill = -1;
 
+    // Level setting
+    public UnityEvent OnSettingOpened;
+    public UnityEvent OnSettingClosed;
+    bool isSettingOpened;
 
     PlayerHp playerHp;
     
@@ -38,6 +43,7 @@ public class PlayerController : MonoBehaviour
         isFalling = false;
         canJump = true;
         canDash = true;
+        isSettingOpened = false;
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         playerHp = GetComponent<PlayerHp>();
@@ -45,6 +51,20 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            isSettingOpened = !isSettingOpened;
+            if (isSettingOpened)
+            {
+                OnSettingOpened.Invoke();
+            }
+            else
+            {
+                OnSettingClosed.Invoke();
+            }
+        }
+        
         Debug.DrawRay(transform.position+Vector3.up*.5f, Vector3.down * .65f, Color.red);
         if (Physics.Raycast(rb.transform.position + Vector3.up * .5f, Vector3.down, out RaycastHit groundHit,.8f))
         {
@@ -84,7 +104,7 @@ public class PlayerController : MonoBehaviour
         }
         if (!canDash && !isDashing)
         {
-            playerHp.Addxp(.5f);
+            playerHp.Addxp(Time.deltaTime);
         }
 
 
@@ -145,7 +165,7 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(dashDuration);
         isDashing = false;
         rb.velocity = new Vector3(0,0,0);
-       
+        
         yield return new WaitForSeconds(dashCooldown);
     
         canDash = true;
@@ -153,6 +173,9 @@ public class PlayerController : MonoBehaviour
 
     void HandleSkill()
     {
+        if (playerHp.mpvalue <= 10)
+            return;
+        
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             OnCardChanged.Invoke(currSkill, 0);
@@ -177,6 +200,12 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0) && currSkill != -1)
         {
             OnSkillUsed.Invoke();
+            currSkill = -1;
+        }
+        
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            OnSkillCanceled.Invoke();
             currSkill = -1;
         }
     }
