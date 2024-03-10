@@ -19,8 +19,8 @@ TagManager:
   - HealthUI
   - MeleeCollider
   - Projectile
-  - 
-  - 
+  - Ground
+  - NavmeshBlock
   - 
   - 
   - 

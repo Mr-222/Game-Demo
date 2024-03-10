@@ -940,8 +940,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInAction: 0
-  detectRadius: 6.1
-  fov: 51
+  detectRadius: 90.5
+  fov: 360
   currentState: {fileID: 2092529176}
   currentTarget: {fileID: 0}
   navMeshAgent: {fileID: 0}
