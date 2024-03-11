@@ -9007,7 +9007,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1091775648
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17495,6 +17495,11 @@ PrefabInstance:
       propertyPath: OnSkillCanceled.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1057324830}
+    - target: {fileID: 3336712365178957469, guid: bf29f79b370c0d2478ee0b4a7095f191,
+        type: 3}
+      propertyPath: OnSkillUsed.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_FloatArgument
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3433427068736971490, guid: bf29f79b370c0d2478ee0b4a7095f191,
         type: 3}
       propertyPath: m_RootOrder
@@ -17563,7 +17568,7 @@ PrefabInstance:
     - target: {fileID: 4843084099134128192, guid: bf29f79b370c0d2478ee0b4a7095f191,
         type: 3}
       propertyPath: hpmax
-      value: 10
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 4843084099134128192, guid: bf29f79b370c0d2478ee0b4a7095f191,
         type: 3}

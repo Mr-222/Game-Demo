@@ -89,9 +89,6 @@ public class PlayerHp : MonoBehaviour
         loserpanel.SetActive(true);
         this.GetComponent<PlayerController>().enabled = false;
         this.GetComponent<AttackScript>().enabled = false;
-       
-       
-        Time.timeScale = 0;
         this.enabled = false;
     }
 
@@ -100,8 +97,6 @@ public class PlayerHp : MonoBehaviour
         winpanel.SetActive(true);
         this.GetComponent<PlayerController>().enabled = false;
         this.GetComponent<AttackScript>().enabled = false;
-      
-        Time.timeScale = 0;
         this.enabled = false;
     }
 }
