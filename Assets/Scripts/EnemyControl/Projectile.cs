@@ -32,7 +32,9 @@ public class Projectile : MonoBehaviour
 
         // Aim towards the predicted position
         Vector3 direction = (predictedTargetPosition - transform.position).normalized;
-
+        
+        direction.y = 0; //may need to change in the future
+        //print(direction);
         rb.velocity = direction * speed;
 
         StartCoroutine(StartDestructionTimer());

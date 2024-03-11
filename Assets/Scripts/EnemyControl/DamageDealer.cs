@@ -21,11 +21,12 @@ public class DamageDealer : MonoBehaviour
         {
             
             other.gameObject.GetComponent<CharacterStats>().TakeDamage(damage);
-            if (destory)
-            {
-                Destroy(this.gameObject);
-            }
+            
         }
-        
+        if (destory)
+        {
+            Destroy(this.gameObject);
+        }
+
     }
 }

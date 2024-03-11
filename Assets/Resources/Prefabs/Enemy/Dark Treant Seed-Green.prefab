@@ -4804,7 +4804,7 @@ GameObject:
   - component: {fileID: 3510413400450701472}
   - component: {fileID: -1979389331741168320}
   - component: {fileID: 3499307966126727959}
-  - component: {fileID: 4069360427909288327}
+  - component: {fileID: 4603666537459492880}
   m_Layer: 10
   m_Name: Dark Treant Seed-Green
   m_TagString: Untagged
@@ -4939,13 +4939,13 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2839809467386259146}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.09818649
   m_Height: 0.20890474
   m_Direction: 1
   m_Center: {x: -0.0029678345, y: 0.012118943, z: 0.004295826}
---- !u!114 &4069360427909288327
+--- !u!114 &4603666537459492880
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4954,7 +4954,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2839809467386259146}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fa73b4c7062b46e5ab2507a27a3f244, type: 3}
+  m_Script: {fileID: 11500000, guid: 15e5cbbdd4b5840e4865289261534602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mask:

@@ -8,6 +8,7 @@ public class GameConditionManager : MonoBehaviour
 
     private int enemyDeathCount = 0;
     public int deathThreshold = 10; // Set this to whatever threshold you want
+    [SerializeField] GameObject wintext;
 
     private void Awake()
     {
@@ -52,7 +53,9 @@ public class GameConditionManager : MonoBehaviour
     private void EndGame()
     {
         // Handle game over logic here
+        wintext.SetActive(true);
         Debug.Log("Game Over!");
+
     }
 
 
