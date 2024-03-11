@@ -2,24 +2,11 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager instance;
-
     public AudioSource musicSource;
     public AudioSource sfxSource;
 
     [SerializeField] private AudioClip coinSound;
     [SerializeField] private AudioClip[] skillSounds;
-    
-    void Awake()
-    {
-        // Ensure there's only one AudioManager instance (Singleton Pattern)
-        if (instance == null)
-            instance = this;
-        else if (instance != this)
-            Destroy(gameObject);
-
-        DontDestroyOnLoad(gameObject); // Don't destroy this object when loading new scenes
-    }
 
     private void OnEnable()
     {

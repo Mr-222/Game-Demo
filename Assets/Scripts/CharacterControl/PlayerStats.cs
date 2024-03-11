@@ -49,8 +49,8 @@ public class PlayerStats : CharacterStats
         anim.SetTrigger("IsDead");
         gameObject.GetComponent<PlayerController>().enabled = false;
         gameObject.GetComponent<AttackScript>().enabled = false;
-        gameObject.GetComponent<PlayerController>().enabled = false;
-        yield return new WaitForSeconds(2f);
+        this.enabled = false;
+        yield return new WaitForSeconds(3f);
         gameObject.SetActive(false);
     }
 }

@@ -40,19 +40,16 @@ public class AttackScript : MonoBehaviour
         if (Input.GetMouseButtonDown(0)) // Check if left mouse button is clicked
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
             Vector3 skillPos = new Vector3(0, 0, 0);
-            if (Physics.Raycast(ray, out hit))
+            RaycastHit[] hits;
+            hits = Physics.RaycastAll(ray);
+            for (int i = 0; i < hits.Length; i++)
             {
-                if (hit.collider.CompareTag("Ground")) // Check if the collider is tagged as ground
+                RaycastHit hit = hits[i];
+                if (hit.collider.CompareTag("Ground"))
                 {
-                    skillPos = hit.point; // Get the point of intersection
-                }
-                else {
-                    if (Physics.Raycast(hit.collider.transform.position, Vector3.down, out RaycastHit groundHit, Mathf.Infinity))
-                    {
-                        if (groundHit.collider.CompareTag("Ground"))  skillPos = groundHit.point;
-                    }
+                    skillPos = hit.point;
+                    break;
                 }
             }
             _playerStats.UpdateMana(curSkill.GetComponent<Skill>().manaCost);
