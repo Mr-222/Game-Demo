@@ -18,7 +18,10 @@ public class Skill : MonoBehaviour
     void Update()
     {
         // stop the system when the loop of the skill has done
-        AttackEnemy();
+        if (canAttack)
+        {
+            AttackEnemy();
+        }
         StopEmitting();
     }
 
@@ -30,31 +33,35 @@ public class Skill : MonoBehaviour
         }
     }
 
-    void AttackEnemy() {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, radius, targetLayer);
+    void AttackEnemy()
+    {
+        StartCoroutine(AttackWithInterval());
 
+    }
+    IEnumerator AttackWithInterval()
+    {
+        canAttack = false;
         // Iterate through colliders to find enemies
-        foreach (Collider collider in colliders)
+        while (true)
         {
-            if (collider.CompareTag("enemy")) {
-                if (!oneTimeAttack)
+            Collider[] colliders = Physics.OverlapSphere(transform.position, radius, targetLayer);
+            foreach (Collider collider in colliders)
+            {
+                if (collider.CompareTag("enemy"))
                 {
-                    collider.gameObject.GetComponent<EnemyStats>().TakeDamage(damage);
-                    StartCoroutine(CoolDownTimer());
-                }
-                else {
-                    attackInterval -= Time.deltaTime;
-                    if (attackInterval <= 0) {
-                        attackInterval = 1000;
+                    if (!oneTimeAttack)
+                    {
+                        collider.gameObject.GetComponent<EnemyStats>().TakeDamage(damage);
+                    }
+                    else
+                    {
                         collider.gameObject.GetComponent<EnemyStats>().TakeDamage(damage);
                     }
                 }
             }
+            yield return new WaitForSeconds(attackInterval);
         }
-    }
-    IEnumerator CoolDownTimer() {
-        canAttack = false;
-        yield return new WaitForSeconds(attackInterval);
+
         canAttack = true;
     }
     void OnDrawGizmosSelected()
