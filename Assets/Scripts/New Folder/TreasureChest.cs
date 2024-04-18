@@ -1,25 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TreasureChest : MonoBehaviour
 {
 
-    public GameObject coins;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject treasure;
 
-    // Update is called once per frame
-    void Update()
+    public void SpawnTreasure()
     {
-        
-    }
-
-    public void AddCoin()
-    {
-        Instantiate(coins, transform.position,Quaternion.identity);
+        GameObject treasureInstance = Instantiate(treasure, transform.position, Quaternion.identity);
+        treasureInstance.transform.localScale = new Vector3(6f, 6f, 6f);
     }
 }

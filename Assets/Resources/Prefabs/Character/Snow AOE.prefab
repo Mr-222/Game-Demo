@@ -9781,13 +9781,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1afeb929c125594e943943818032e13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackInterval: 0.1
+  attackInterval: 0.4
   canAttack: 1
   oneTimeAttack: 0
   _name: Snow
-  radius: 4
-  damage: 3
-  manaCost: -10
+  radius: 5
+  damage: 8
+  manaCost: -15
   effect: 
   targetLayer:
     serializedVersion: 2
@@ -34183,7 +34183,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: e823cd5b5d27c0f4b8256e7c12ee3e6d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

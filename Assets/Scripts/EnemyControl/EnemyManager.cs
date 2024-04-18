@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -79,7 +77,6 @@ public class EnemyManager : MonoBehaviour
         enemyStats = GetComponent<EnemyStats>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         navMeshAgent.stoppingDistance = maximum_attack_range;
-
     }
 
     // Update is called once per frame

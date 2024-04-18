@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.Events;
 using UnityEngine;
 
@@ -10,8 +8,7 @@ public class EnemyStats : CharacterStats
     [SerializeField] IdleState idleState;
     public UIEnemyHealthBar enemyHealthBar;
     public static UnityEvent onEnemyDied = new UnityEvent();
-    // Start is called before the first frame update
-
+    
     private void Awake()
     {
         anim = GetComponent<Animator>();
@@ -23,12 +20,6 @@ public class EnemyStats : CharacterStats
         currentHealth = maxHealth;
         enemyHealthBar.SetMaxHealth(maxHealth);
     }
-
-    //// Update is called once per frame
-    //void Update()
-    //{
-        
-    //}
 
     public override void TakeDamage(int damage)
     {
