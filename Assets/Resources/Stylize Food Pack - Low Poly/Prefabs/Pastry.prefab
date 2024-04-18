@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 3507467125117365039}
   - component: {fileID: 505209448515773578}
   - component: {fileID: 2370628540617248832}
-  - component: {fileID: 1784386934991977164}
   - component: {fileID: 6308539795987891577}
+  - component: {fileID: 5200218514922787884}
   m_Layer: 0
   m_Name: Pastry
   m_TagString: Untagged
@@ -85,20 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &1784386934991977164
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4316373038523969941}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -7109348672420638869, guid: 335e8b372bd49d3479dc74d5512ad2c3, type: 3}
 --- !u!114 &6308539795987891577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,3 +97,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b40ababdf39f45169349719d84cad76a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!135 &5200218514922787884
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4316373038523969941}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.27
+  m_Center: {x: 0.00026999414, y: 0.029475236, z: 0.00048875436}

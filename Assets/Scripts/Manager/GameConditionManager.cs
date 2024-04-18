@@ -1,14 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameConditionManager : MonoBehaviour
 {
     public static GameConditionManager Instance { get; private set; }
 
+    public PlayerHp playerhp;
     private int enemyDeathCount = 0;
     public int deathThreshold = 10; // Set this to whatever threshold you want
     [SerializeField] GameObject wintext;
+    [SerializeField] TextMeshProUGUI levelGoalText;
 
     private void Awake()
     {
@@ -22,6 +23,8 @@ public class GameConditionManager : MonoBehaviour
         }
 
         enemyDeathCount = 0; // Reset the count
+        if (levelGoalText != null)
+            levelGoalText.text = "Enemies killed: " + enemyDeathCount + "/" + deathThreshold;
     }
 
     private void OnEnable()
@@ -36,9 +39,10 @@ public class GameConditionManager : MonoBehaviour
 
     private void HandleEnemyDeath()
     {
-     
         enemyDeathCount++;
         Debug.Log(enemyDeathCount);
+        if (levelGoalText != null)
+            levelGoalText.text = "Enemies killed: " + enemyDeathCount + "/" + deathThreshold;
         CheckGameOver();
     }
 
@@ -49,16 +53,12 @@ public class GameConditionManager : MonoBehaviour
             EndGame();
         }
     }
-    public PlayerHp playerhp;
+    
     private void EndGame()
     {
         // Handle game over logic here
-        // wintext.SetActive(true);
         playerhp = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHp>();
         playerhp.PlayerWin();
         Debug.Log("Game Over!");
-
     }
-
-
 }
