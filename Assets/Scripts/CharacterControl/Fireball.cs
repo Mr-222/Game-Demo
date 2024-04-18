@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Fireball : MonoBehaviour
@@ -17,7 +15,7 @@ public class Fireball : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("baoxiang"))
         {
-            other.gameObject.GetComponent<TreasureChest>().AddCoin();
+            other.gameObject.GetComponent<TreasureChest>().SpawnTreasure();
             Destroy(other.gameObject);
         }
        

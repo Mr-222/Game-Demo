@@ -926,6 +926,7 @@ MonoBehaviour:
   maxHealth: 100
   idleState: {fileID: 2092529176}
   enemyHealthBar: {fileID: 472754862}
+  iswin: 0
 --- !u!114 &2142907797
 MonoBehaviour:
   m_ObjectHideFlags: 0

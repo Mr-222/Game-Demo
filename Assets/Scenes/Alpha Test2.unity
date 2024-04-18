@@ -22285,6 +22285,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2700219246678959945, guid: d2b67af396bfa6940a00740de263da1e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.23
+      objectReference: {fileID: 0}
     - target: {fileID: 5778406573754477521, guid: d2b67af396bfa6940a00740de263da1e,
         type: 3}
       propertyPath: m_Name
@@ -22335,7 +22340,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cd62a7a8e54ee946a8d5ecac54272a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coins: {fileID: 2248832369890295900, guid: 04a83c9848b18fc4186fd30a267be6d2, type: 3}
+  treasure: {fileID: 4316373038523969941, guid: 3fedfc26b0988d640b61160d3446ceea,
+    type: 3}
 --- !u!1 &1469361439 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 173746, guid: 4d2fa817022eab242a090b2c8a0c7f04,

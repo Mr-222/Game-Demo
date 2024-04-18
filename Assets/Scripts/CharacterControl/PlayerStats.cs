@@ -1,7 +1,4 @@
-
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerStats : CharacterStats
@@ -19,9 +16,15 @@ public class PlayerStats : CharacterStats
         currentMana = maxMana;
         anim = GetComponent<Animator>();
         playerHp = GetComponent<PlayerHp>();
+        Food.OnFoodCollected += eatFood;
+    }
+
+    public void eatFood()
+    {
+        playerHp.Addhp(500);
+        playerHp.Addmp(50);
     }
     
-
     public override void TakeDamage(int damage)
     {
         anim.SetTrigger("GetHit");
@@ -40,6 +43,7 @@ public class PlayerStats : CharacterStats
             currentMana = currentMana + mana;
             playerHp.Addmp(mana);
     }
+    
     protected override void handleDeath()
     {
         StartCoroutine(Death());
