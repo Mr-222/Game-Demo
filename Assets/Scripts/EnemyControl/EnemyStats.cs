@@ -65,10 +65,18 @@ public class EnemyStats : CharacterStats
         //Destroy(this.gameObject);
     }
 
+    public bool iswin;
     public void Die()
     {
         onEnemyDied?.Invoke();
+        if (iswin)
+        {
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHp>().PlayerWin();
+        }
+        // GameObject.FindGameObjectWithTag("monstersnum").GetComponent<monstersnum>().num++;
+
         Destroy(this.gameObject);
+     
     }
 }
 

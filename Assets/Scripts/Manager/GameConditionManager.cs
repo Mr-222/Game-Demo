@@ -49,11 +49,13 @@ public class GameConditionManager : MonoBehaviour
             EndGame();
         }
     }
-
+    public PlayerHp playerhp;
     private void EndGame()
     {
         // Handle game over logic here
-        wintext.SetActive(true);
+        // wintext.SetActive(true);
+        playerhp = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHp>();
+        playerhp.PlayerWin();
         Debug.Log("Game Over!");
 
     }

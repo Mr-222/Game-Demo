@@ -4960,5 +4960,4 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 64
-  attack: {fileID: 11400000, guid: ea2ae4f2d71a544bdb924bd878361956, type: 2}
   destory: 1

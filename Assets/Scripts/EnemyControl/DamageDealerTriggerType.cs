@@ -11,6 +11,9 @@ public class DamageDealerTriggerType : MonoBehaviour
 
 
     public void setDamage(int D) {
+
+        Debug.Log("gooooo");
+
         damage = D;
     }
   
