@@ -1350,6 +1350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  currentHealth: 0
   idleState: {fileID: 6127830305376830955}
   enemyHealthBar: {fileID: 6127830305904056669}
   iswin: 0

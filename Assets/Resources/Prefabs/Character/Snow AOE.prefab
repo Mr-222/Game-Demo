@@ -9785,7 +9785,7 @@ MonoBehaviour:
   canAttack: 1
   oneTimeAttack: 0
   _name: Snow
-  radius: 4
+  radius: 5
   damage: 3
   manaCost: -10
   effect: 

@@ -263,7 +263,7 @@ GameObject:
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &15455545
 Transform:
@@ -273,8 +273,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 15455544}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalPosition: {x: 0.00000029802, y: 0, z: -29.2}
+  m_LocalScale: {x: 27.432001, y: 1, z: 36.771397}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 137800738}
@@ -291,7 +291,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &15455547
@@ -1805,7 +1805,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 137800737}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 303, y: -38.4, z: -11.74}
+  m_LocalPosition: {x: -7, y: -38.4, z: -11.74}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -17561,7 +17561,7 @@ PrefabInstance:
     - target: {fileID: 8157735770357247755, guid: cdb606e2a9026472ca007d023569d039,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.3199062
+      value: -0.93
       objectReference: {fileID: 0}
     - target: {fileID: 8157735770357247755, guid: cdb606e2a9026472ca007d023569d039,
         type: 3}

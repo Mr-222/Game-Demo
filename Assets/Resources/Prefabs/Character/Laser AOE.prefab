@@ -24571,7 +24571,7 @@ MonoBehaviour:
   canAttack: 1
   oneTimeAttack: 0
   _name: Laser
-  radius: 4
+  radius: 5
   damage: 5
   manaCost: -15
   effect: 

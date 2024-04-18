@@ -36,7 +36,7 @@ public class Skill : MonoBehaviour
         // Iterate through colliders to find enemies
         foreach (Collider collider in colliders)
         {
-            if (collider.CompareTag("enemy") && canAttack) {
+            if (collider.CompareTag("enemy")) {
                 if (!oneTimeAttack)
                 {
                     collider.gameObject.GetComponent<EnemyStats>().TakeDamage(damage);
