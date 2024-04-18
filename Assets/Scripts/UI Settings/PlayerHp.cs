@@ -99,4 +99,13 @@ public class PlayerHp : MonoBehaviour
         this.GetComponent<AttackScript>().enabled = false;
         this.enabled = false;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+          if (other.gameObject.CompareTag("coin"))
+        {
+            Addhp(500);
+            Destroy(other.gameObject);
+        }
+    }
 }

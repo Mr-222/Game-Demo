@@ -15,6 +15,12 @@ public class Fireball : MonoBehaviour
         if (other.gameObject.CompareTag("enemy")) {
             other.gameObject.GetComponent<EnemyStats>().TakeDamage(damage);
         }
+        else if (other.gameObject.CompareTag("baoxiang"))
+        {
+            other.gameObject.GetComponent<TreasureChest>().AddCoin();
+            Destroy(other.gameObject);
+        }
+       
         Destroy(gameObject);
     }
 }

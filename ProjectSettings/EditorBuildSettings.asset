@@ -9,9 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Main.unity
     guid: d92efaafaac4204499dd6535e904e8e3
   - enabled: 1
-    path: Assets/Scenes/Scene_Dungeon.unity
-    guid: 55f8a20d39b9744ef9b05acb7f0d35ea
-  - enabled: 1
     path: Assets/Scenes/Alpha Test.unity
     guid: 7c1aeca666a7cb0468728a24904735e3
+  - enabled: 1
+    path: Assets/Scenes/Alpha Test2.unity
+    guid: ce2970fc8ad94f840bf74afa7fda8c83
   m_configObjects: {}

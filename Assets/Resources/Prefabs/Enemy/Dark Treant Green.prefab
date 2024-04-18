@@ -260,9 +260,7 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 64
-  attack: {fileID: 11400000, guid: da21505bbc0dd42deb79f14c065e1d09, type: 2}
   destory: 0
-  o: {fileID: 0}
 --- !u!1 &472754860
 GameObject:
   m_ObjectHideFlags: 0
