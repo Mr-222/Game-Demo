@@ -27,8 +27,8 @@ public class TopDownCamera : MonoBehaviour
         if (Physics.Raycast(ray, out hit))
         {
             Vector3 dir = hit.point - transform.position;
-            dir.Normalize();
             dir.y = 0;
+            dir.Normalize();
             Vector3 result = currPos + dir * 5f;
             result.x = Mathf.Clamp(result.x, currPos.x - threshold, currPos.x + threshold);
             result.z = Mathf.Clamp(result.z, currPos.z - threshold, currPos.z + threshold);

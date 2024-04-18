@@ -132,13 +132,10 @@ public class PlayerController : MonoBehaviour
         rb.MovePosition(this.transform.position + movement);
         
         // Rotate toward mouse position
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
-        {
-            Vector3 lookAtPosition = new Vector3(hit.point.x, transform.position.y, hit.point.z);
-            transform.LookAt(lookAtPosition);
-        }
+        Vector3 temp = Input.mousePosition;
+        temp.z = Camera.main.transform.position.y;
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(temp);
+        transform.LookAt(new Vector3(mousePos.x, transform.position.y, mousePos.z));
         
         // Control animation
         float vely = Vector3.Dot(transform.forward, movementDirection);

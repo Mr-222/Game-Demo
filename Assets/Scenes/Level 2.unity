@@ -32240,6 +32240,11 @@ PrefabInstance:
       objectReference: {fileID: 1091775647}
     - target: {fileID: 7165929681438733231, guid: bf29f79b370c0d2478ee0b4a7095f191,
         type: 3}
+      propertyPath: dashPower
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7165929681438733231, guid: bf29f79b370c0d2478ee0b4a7095f191,
+        type: 3}
       propertyPath: jumpPower
       value: 600
       objectReference: {fileID: 0}
