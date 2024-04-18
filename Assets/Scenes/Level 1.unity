@@ -12060,7 +12060,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Alpha Test2
+          m_StringArgument: Level 2
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1780963024}
@@ -16536,7 +16536,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Alpha Test
+          m_StringArgument: Level 1
           m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1879212297
@@ -17995,7 +17995,7 @@ PrefabInstance:
     - target: {fileID: 3889927214531386186, guid: eb610a5fb24514832baac6ae4e1108b0,
         type: 3}
       propertyPath: deathThreshold
-      value: 30
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3889927214531386187, guid: eb610a5fb24514832baac6ae4e1108b0,
         type: 3}
@@ -18844,7 +18844,7 @@ PrefabInstance:
     - target: {fileID: 5398544395841790335, guid: bf29f79b370c0d2478ee0b4a7095f191,
         type: 3}
       propertyPath: hpmax
-      value: 1000
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 5398544395841790335, guid: bf29f79b370c0d2478ee0b4a7095f191,
         type: 3}

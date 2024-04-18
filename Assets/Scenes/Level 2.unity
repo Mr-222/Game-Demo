@@ -13891,6 +13891,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpbar: {fileID: 1911036619}
+  bossStatsUI: {fileID: 830035785}
 --- !u!1001 &927080399
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28113,7 +28114,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Alpha Test
+          m_StringArgument: Level 1
           m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1879212297
@@ -31996,7 +31997,7 @@ PrefabInstance:
     - target: {fileID: 3270676686027345841, guid: b369cf5b339be394d9c5e0737bfe4627,
         type: 3}
       propertyPath: maxHealth
-      value: 2000
+      value: 1500
       objectReference: {fileID: 0}
     - target: {fileID: 3270676686027345842, guid: b369cf5b339be394d9c5e0737bfe4627,
         type: 3}
@@ -32024,6 +32025,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3237598333314779058, guid: 2efbc3f2d4867264eb3b0e7d764effec,
         type: 3}
+    - target: {fileID: 3270676686039791644, guid: b369cf5b339be394d9c5e0737bfe4627,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b369cf5b339be394d9c5e0737bfe4627, type: 3}
 --- !u!82 &4843084099134128191 stripped
@@ -32210,7 +32216,7 @@ PrefabInstance:
     - target: {fileID: 5398544395841790335, guid: bf29f79b370c0d2478ee0b4a7095f191,
         type: 3}
       propertyPath: hpmax
-      value: 1000
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 5398544395841790335, guid: bf29f79b370c0d2478ee0b4a7095f191,
         type: 3}

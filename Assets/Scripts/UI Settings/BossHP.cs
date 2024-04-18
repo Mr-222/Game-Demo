@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class BossHP : MonoBehaviour
 {
     [SerializeField] private Image hpbar;
+    [SerializeField] private GameObject bossStatsUI;
     private EnemyStats enemyStats;
     
     private void Start()
@@ -16,5 +17,7 @@ public class BossHP : MonoBehaviour
     private void Update()
     {
         hpbar.fillAmount = (float)enemyStats.currentHealth / enemyStats.maxHealth;
+        if (enemyStats.currentHealth <= 0)
+            Destroy(bossStatsUI);
     }
 }

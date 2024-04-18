@@ -59,6 +59,8 @@ public class GameConditionManager : MonoBehaviour
         // Handle game over logic here
         playerhp = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHp>();
         playerhp.PlayerWin();
+        if (levelGoalText != null)
+            Destroy(levelGoalText);
         Debug.Log("Game Over!");
     }
 }

@@ -13,11 +13,7 @@ public class Skill : MonoBehaviour
     public int manaCost;
     public string effect;
     public LayerMask targetLayer;
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
+    
     // Update is called once per frame
     void Update()
     {
@@ -61,7 +57,7 @@ public class Skill : MonoBehaviour
         yield return new WaitForSeconds(attackInterval);
         canAttack = true;
     }
-        void OnDrawGizmosSelected()
+    void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, radius);
