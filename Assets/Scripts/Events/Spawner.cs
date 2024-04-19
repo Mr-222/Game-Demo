@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public GameObject prefabToSpawn; // The prefab you want to spawn
+    public GameObject[] prefabsList;
     public Transform spawnPoint; // The point where you want to spawn the prefab
     [SerializeField] int count = 5; // Total number of prefabs to spawn
     [SerializeField] float spawnInterval = 5.0f; // Time in seconds between each spawn
@@ -20,7 +20,8 @@ public class Spawner : MonoBehaviour
 
         while (count > 0)
         {
-            Instantiate(prefabToSpawn, spawnPoint.position, spawnPoint.rotation); // Spawn the prefab
+            int randomIdx = Random.Range(0, prefabsList.Length);
+            Instantiate(prefabsList[randomIdx], spawnPoint.position, spawnPoint.rotation); // Spawn the prefab
             count--; // Decrement the count after each spawn
             yield return new WaitForSeconds(spawnInterval); // Wait for specified interval before spawning next prefab
         }

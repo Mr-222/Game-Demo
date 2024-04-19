@@ -49,8 +49,9 @@ public class EnemyStats : CharacterStats
             enemyManager.set_max_detectRadius();
             enemyManager.set_max_fov();
         }
-        
-        currentHealth -= damage;
+        if (currentHealth > 0) {
+            currentHealth -= damage;
+        }
         if (!enemyManager.IS_IN_ACTION)
         {
             anim.Play("TakeDamage");
