@@ -9792,6 +9792,9 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 128
+  onSkillDestroy:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &3340405831355010171
 GameObject:
   m_ObjectHideFlags: 0
