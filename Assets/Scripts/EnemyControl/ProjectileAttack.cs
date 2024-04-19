@@ -8,6 +8,7 @@ public class ProjectileAttack : MonoBehaviour
     [SerializeField] Transform instantiate_point;
     EnemyManager enemyManager;
     Rigidbody tmp;
+    public int timeout = 5;
 
     private void Awake()
     {
@@ -19,7 +20,7 @@ public class ProjectileAttack : MonoBehaviour
         if (enemyManager.currentTarget != null)
         {
             Projectile clone = Instantiate(prefab, instantiate_point.position, Quaternion.identity);
-            clone.timeoutDestructor = 5;
+            clone.timeoutDestructor = timeout;
             tmp = enemyManager.currentTarget.gameObject.GetComponent<Rigidbody>();
             //if(tmp == null)
             //{
