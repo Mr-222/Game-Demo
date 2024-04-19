@@ -209,6 +209,16 @@ public class EnemyManager : MonoBehaviour
 
     //}
 
+    public void disableAgentWhenAttacked()
+    {
+        navMeshAgent.isStopped = true;
+        navMeshAgent.velocity = Vector3.zero;
+    }
+
+    public void resumeAgentAfterAttack()
+    {
+        navMeshAgent.isStopped = false;
+    }
 
 
 
