@@ -15,7 +15,7 @@ MonoBehaviour:
   actionAnimation: ProjectileAttack
   attackPower: 5
   Recovery: 3
-  maximumAttackAngle: 45
-  minimumAttackAngle: -45
+  maximumAttackAngle: 90
+  minimumAttackAngle: -90
   minAttackDist: 7
   maxAttackDist: 12

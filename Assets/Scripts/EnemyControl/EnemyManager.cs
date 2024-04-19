@@ -46,7 +46,10 @@ public class EnemyManager : MonoBehaviour
     [Tooltip("Rotation Speed")]
     public float rotationSpeed = 20f;
     
-    public float currRecovery = 0; 
+    public float currRecovery = 0;
+
+    [HideInInspector] 
+    public GameObject burnVfx = null;
 
     public void OnDrawGizmosSelected()
     {
@@ -80,6 +83,8 @@ public class EnemyManager : MonoBehaviour
     private void Update()
     {
         HandleRecover();
+        if (burnVfx != null)
+            burnVfx.transform.position = this.transform.position;
     }
 
     private void FixedUpdate()
@@ -90,9 +95,9 @@ public class EnemyManager : MonoBehaviour
 
     private void HandleStatus()
     {
-        if (enemyStats.status == EnemyStats.Status.Normal)
+        if (enemyStats.is_dead)
         {
-            navMeshAgent.enabled = true;
+            navMeshAgent.enabled = false;
             enemyAnimator.anim.speed = 1f;
             return;
         }
@@ -108,12 +113,24 @@ public class EnemyManager : MonoBehaviour
             enemyStats.isBurning = true;
             StartCoroutine(burning());
         }
+
+        if (!enemyStats.isBurning && burnVfx != null)
+        {
+            Destroy(burnVfx);
+            burnVfx = null;
+        }
+        
+        if (enemyStats.status == EnemyStats.Status.Normal)
+        {
+            navMeshAgent.enabled = true;
+            enemyAnimator.anim.speed = 1f;
+        }
     }
 
     private IEnumerator burning()
     {
-        enemyStats.TakeDamage(10);
-        yield return new WaitForSeconds(0.5f);
+        enemyStats.TakeDamage(2);
+        yield return new WaitForSeconds(1f);
         enemyStats.isBurning = false;
     }
 
@@ -126,30 +143,6 @@ public class EnemyManager : MonoBehaviour
                 SwitchState(nextState);
             }
         }
-
-
-
-        //if (enemyLocomotionController.currentTarget == null)
-        //{
-        //    enemyLocomotionController.HandleDetection();
-        //}
-        //else if (enemyLocomotionController.distanceToTarget >= enemyLocomotionController.stoppingDistance)
-        //{
-        //    Debug.Log("what");
-        //    enemyLocomotionController.HandleMoveToTarget();
-        //}
-
-
-        //else if(enemyLocomotionController.distanceToTarget < enemyLocomotionController.stoppingDistance)
-        //{
-        //    //attack
-        //    enemyLocomotionController.navMeshAgent.isStopped = true;
-        //    enemyAnimator.anim.SetFloat("Vertical", 0, 0.1f, Time.deltaTime);
-        //    Debug.Log("what2");
-        //    Debug.Log("??????");
-        //    //attackTarget();
-        //    Debug.Log("isInAction");
-        //}
     }
 
     private void SwitchState(State state)
@@ -171,80 +164,25 @@ public class EnemyManager : MonoBehaviour
             }
         }
     }
-
-    //private void attackTarget()
-    //{
-    //    Debug.Log("isInAction" + isInAction);
-
-    //    if (isInAction) { return; }
-    //    if(curAttack == null)
-    //    {
-    //        getAttackAction();
-    //    }
-    //    else
-    //    {
-
-    //        isInAction = true;
-    //        currRecovery = curAttack.Recovery;
-    //        enemyAnimator.PlayAnimation(curAttack.actionAnimation, true);
-    //        curAttack = null;
-    //    }
-    //}
-
-    //private void getAttackAction()
-    //{
-    //    Vector3 targetDir = enemyLocomotionController.currentTarget.transform.position - transform.position;
-    //    float viewAngle = Vector3.Angle(targetDir, transform.forward);
-    //    enemyLocomotionController.distanceToTarget = Vector3.Distance(enemyLocomotionController.currentTarget.transform.position, transform.position);
-
-    //    int maxPower = 0;
-    //    for(int i = 0; i < enemyAttacks.Length; i++)
-    //    {
-    //        EnemyAttack enemyAttack = enemyAttacks[i];
-    //        if(enemyLocomotionController.distanceToTarget <= enemyAttack.maxAttackDist && enemyLocomotionController.distanceToTarget >= enemyAttack.minAttackDist)
-    //        {
-    //            if(viewAngle <= enemyAttack.maxAttackDist && viewAngle >= enemyAttack.minimumAttackAngle)
-    //            {
-    //                maxPower += enemyAttack.attackPower;
-    //            }
-    //        }
-    //    }
-    //    int randomValue = Random.Range(0, maxPower);
-    //    int tmp = 0;
-
-    //    for (int i = 0; i < enemyAttacks.Length; i++)
-    //    {
-    //        EnemyAttack enemyAttack = enemyAttacks[i];
-    //        if (enemyLocomotionController.distanceToTarget <= enemyAttack.maxAttackDist && enemyLocomotionController.distanceToTarget >= enemyAttack.minAttackDist)
-    //        {
-    //            if (viewAngle <= enemyAttack.maxAttackDist && viewAngle >= enemyAttack.minimumAttackAngle)
-    //            {
-    //                if(curAttack != null) { return; }
-
-    //                tmp += enemyAttack.attackPower;
-    //                if(tmp > randomValue)
-    //                {
-    //                    curAttack = enemyAttack;
-    //                }
-
-    //            }
-    //        }
-    //    }
-
-
-    //}
-
+    
     public void disableAgentWhenAttacked()
     {
-        navMeshAgent.isStopped = true;
-        navMeshAgent.velocity = Vector3.zero;
+        if (navMeshAgent != null)
+        {
+            navMeshAgent.isStopped = true;
+            navMeshAgent.velocity = Vector3.zero;
+        }
     }
 
     public void resumeAgentAfterAttack()
     {
-        navMeshAgent.isStopped = false;
+        if (navMeshAgent != null)
+            navMeshAgent.isStopped = false;
     }
 
-
-
+    private void OnDestroy()
+    {
+        if (burnVfx != null)
+            Destroy(burnVfx);
+    }
 }
