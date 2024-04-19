@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyAnimator : AnimatorManager
@@ -10,6 +8,5 @@ public class EnemyAnimator : AnimatorManager
     {
         anim = GetComponent<Animator>();
         enemyLocomotionController = GetComponentInParent<EnemyLocomotionController>();
-            
     }
 }

@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Skill : MonoBehaviour
 {
@@ -13,6 +15,7 @@ public class Skill : MonoBehaviour
     public int manaCost;
     public string effect;
     public LayerMask targetLayer;
+    public UnityEvent onSkillDestroy = new UnityEvent();
     
     // Update is called once per frame
     void Update()
@@ -28,16 +31,14 @@ public class Skill : MonoBehaviour
     void StopEmitting() {
         // Check if the particle system is emitting particles
         if (!transform.GetChild(0).gameObject.activeSelf)
-        {
             Destroy(gameObject);
-        }
     }
 
     void AttackEnemy()
     {
         StartCoroutine(AttackWithInterval());
-
     }
+    
     IEnumerator AttackWithInterval()
     {
         canAttack = false;
@@ -49,24 +50,27 @@ public class Skill : MonoBehaviour
             {
                 if (collider.CompareTag("enemy"))
                 {
-                    if (!oneTimeAttack)
-                    {
-                        collider.gameObject.GetComponent<EnemyStats>().TakeDamage(damage);
-                    }
-                    else
-                    {
-                        collider.gameObject.GetComponent<EnemyStats>().TakeDamage(damage);
-                    }
+                    var enemyStats = collider.gameObject.GetComponent<EnemyStats>();
+                    onSkillDestroy.AddListener(enemyStats.ResetStatus);
+                    enemyStats.TakeDamage(damage);
+                    if (_name == "Snow")
+                        enemyStats.status |= EnemyStats.Status.Freeze;
+                    if (_name == "Meteors")
+                        enemyStats.status |= EnemyStats.Status.Burned;
                 }
             }
             yield return new WaitForSeconds(attackInterval);
         }
-
-        canAttack = true;
     }
+    
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, radius);
+    }
+
+    private void OnDestroy()
+    {
+        onSkillDestroy?.Invoke();
     }
 }

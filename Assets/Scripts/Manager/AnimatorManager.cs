@@ -6,9 +6,7 @@ public class AnimatorManager : MonoBehaviour
 {
 
     [HideInInspector]public Animator anim;
-
-
-
+    
     public void PlayAnimation(string Anim, bool is_interact)
     {
         print(is_interact);

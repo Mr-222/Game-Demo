@@ -1,3 +1,4 @@
+using System;
 using UnityEngine.Events;
 using UnityEngine;
 
@@ -9,11 +10,24 @@ public class EnemyStats : CharacterStats
     public UIEnemyHealthBar enemyHealthBar;
     public static UnityEvent onEnemyDied = new UnityEvent();
     
+    [Flags]
+    public enum Status
+    {
+        Normal = 0x1,
+        Freeze = 0x2,
+        Burned = 0x4,
+    }
+    public Status status;
+    public bool isBurning;
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
         enemyManager = GetComponent<EnemyManager>();
+        status = Status.Normal;
+        isBurning = false;
     }
+    
     void Start()
     {
         //maxHealth = 100; //placeholder for now
@@ -65,9 +79,14 @@ public class EnemyStats : CharacterStats
             GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHp>().PlayerWin();
         }
         // GameObject.FindGameObjectWithTag("monstersnum").GetComponent<monstersnum>().num++;
-
+        
         Destroy(this.gameObject);
-     
+    }
+    
+    public void ResetStatus()
+    {
+        status = Status.Normal;
+        isBurning = false;
     }
 }
 

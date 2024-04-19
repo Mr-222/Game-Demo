@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -15,7 +16,7 @@ public class EnemyManager : MonoBehaviour
     [SerializeField]
     [Tooltip("FOV")]
     [Range(1, 360)]
-     int fov;
+    int fov;
 
     public void set_max_detectRadius() {
         detectRadius = 150f;
@@ -35,10 +36,7 @@ public class EnemyManager : MonoBehaviour
 
     public CharacterStats currentTarget;
     [HideInInspector] public NavMeshAgent navMeshAgent;
-
     
-
-
     public float distanceToTarget;
     public float viewAngle;
 
@@ -47,8 +45,7 @@ public class EnemyManager : MonoBehaviour
     public float maximum_attack_range = 1.5f;
     [Tooltip("Rotation Speed")]
     public float rotationSpeed = 20f;
-
-
+    
     public float currRecovery = 0; 
 
     public void OnDrawGizmosSelected()
@@ -78,18 +75,46 @@ public class EnemyManager : MonoBehaviour
         navMeshAgent = GetComponent<NavMeshAgent>();
         navMeshAgent.stoppingDistance = maximum_attack_range;
     }
-
+    
     // Update is called once per frame
-
     private void Update()
     {
         HandleRecover();
-        //HandleStateMachine();
     }
 
     private void FixedUpdate()
     {
         HandleStateMachine();
+        HandleStatus();
+    }
+
+    private void HandleStatus()
+    {
+        if (enemyStats.status == EnemyStats.Status.Normal)
+        {
+            navMeshAgent.enabled = true;
+            enemyAnimator.anim.speed = 1f;
+            return;
+        }
+        
+        if ((enemyStats.status & EnemyStats.Status.Freeze) == EnemyStats.Status.Freeze)
+        {
+            navMeshAgent.enabled = false;
+            enemyAnimator.anim.speed = 0;
+        }
+
+        if ((enemyStats.status & EnemyStats.Status.Burned) == EnemyStats.Status.Burned && !enemyStats.isBurning)
+        {
+            enemyStats.isBurning = true;
+            StartCoroutine(burning());
+        }
+    }
+
+    private IEnumerator burning()
+    {
+        enemyStats.TakeDamage(10);
+        yield return new WaitForSeconds(0.5f);
+        enemyStats.isBurning = false;
     }
 
     private void HandleStateMachine()
@@ -209,6 +234,16 @@ public class EnemyManager : MonoBehaviour
 
     //}
 
+    public void disableAgentWhenAttacked()
+    {
+        navMeshAgent.isStopped = true;
+        navMeshAgent.velocity = Vector3.zero;
+    }
+
+    public void resumeAgentAfterAttack()
+    {
+        navMeshAgent.isStopped = false;
+    }
 
 
 
