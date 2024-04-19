@@ -11,7 +11,7 @@ public class PursueTargetState : State
     public override State Tick(EnemyManager enemyManager, EnemyStats stats, EnemyAnimator enemyAnimator)
     {
 
-        if (enemyManager.currentTarget == null) //target die, go back to idle
+        if (enemyManager.currentTarget == null) // target die, go back to idle
         {
             return idleState;
         }

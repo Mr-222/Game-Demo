@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.Events;
 using UnityEngine;
 
@@ -13,9 +15,9 @@ public class EnemyStats : CharacterStats
     [Flags]
     public enum Status
     {
-        Normal = 0x1,
-        Freeze = 0x2,
-        Burned = 0x4,
+        Normal = 0x0,
+        Freeze = 0x1,
+        Burned = 0x2,
     }
     public Status status;
     public bool isBurning;
@@ -83,10 +85,17 @@ public class EnemyStats : CharacterStats
         Destroy(this.gameObject);
     }
     
-    public void ResetStatus()
+    private IEnumerator ResetStatus()
     {
+        // Cancel freeze status
+        status &= ~Status.Freeze;
+        yield return new WaitForSeconds(5f);
         status = Status.Normal;
-        isBurning = false;
+    }
+    
+    public void StartResetStatusCoroutine()
+    {
+        StartCoroutine(ResetStatus());
     }
 }
 
