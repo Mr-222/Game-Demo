@@ -37,7 +37,7 @@ public class AttackScript : MonoBehaviour
     }
     
     void PlaceSkillinScene() {
-        if (Input.GetMouseButtonDown(0)) // Check if left mouse button is clicked
+        if (Input.GetMouseButtonDown(1)) // Check if left mouse button is clicked
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             Vector3 skillPos = new Vector3(0, 0, 0);

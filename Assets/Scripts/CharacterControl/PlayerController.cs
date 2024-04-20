@@ -192,15 +192,15 @@ public class PlayerController : MonoBehaviour
             currSkill = 3;
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && currSkill != -1)
+        // if (Input.GetKeyDown(KeyCode.Mouse0) && currSkill != -1)
+        // {
+        //     OnSkillUsed.Invoke();
+        //     currSkill = -1;
+        // }
+        
+        if (Input.GetKeyDown(KeyCode.Mouse1) && currSkill != -1)
         {
             OnSkillUsed.Invoke();
-            currSkill = -1;
-        }
-        
-        if (Input.GetKeyDown(KeyCode.Mouse1))
-        {
-            OnSkillCanceled.Invoke();
             currSkill = -1;
         }
     }
