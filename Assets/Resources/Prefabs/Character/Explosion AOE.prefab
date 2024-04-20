@@ -43973,6 +43973,10 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 128
+  onSkillDestroy:
+    m_PersistentCalls:
+      m_Calls: []
+  skillVFX: {fileID: 0}
 --- !u!1 &9098514075732951805
 GameObject:
   m_ObjectHideFlags: 0
