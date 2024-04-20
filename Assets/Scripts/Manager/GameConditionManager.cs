@@ -42,7 +42,7 @@ public class GameConditionManager : MonoBehaviour
         enemyDeathCount++;
         Debug.Log(enemyDeathCount);
         if (levelGoalText != null)
-            levelGoalText.text = "Enemies killed: " + enemyDeathCount + "/" + deathThreshold;
+            levelGoalText.SetText("Enemies killed: " + enemyDeathCount + "/" + deathThreshold);
         CheckGameOver();
     }
 
