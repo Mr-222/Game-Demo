@@ -179,8 +179,6 @@ GameObject:
   - component: {fileID: 5184410908064558965}
   - component: {fileID: 5908937581080578766}
   - component: {fileID: 495827095}
-  - component: {fileID: 3397271280426971882}
-  - component: {fileID: 7572367655708528790}
   m_Layer: 7
   m_Name: Wraith Swordsman-Purple
   m_TagString: enemy
@@ -330,6 +328,7 @@ MonoBehaviour:
   maximum_attack_range: 2.5
   rotationSpeed: 40
   currRecovery: 0
+  burnVfx: {fileID: 0}
 --- !u!114 &495827097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -344,6 +343,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 300
   currentHealth: 0
+  is_dead: 0
   idleState: {fileID: 1821773491224396914}
   enemyHealthBar: {fileID: 7722744806040842686}
   status: 0
@@ -398,48 +398,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &3397271280426971882
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1045286511599783539}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a02f75e0fdefd4287b40f511101e8b0c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isInAction: 0
-  detectRadius: 100
-  fov: 360
-  currentState: {fileID: 0}
-  currentTarget: {fileID: 0}
-  navMeshAgent: {fileID: 0}
-  distanceToTarget: 0
-  viewAngle: 0
-  maximum_attack_range: 1.5
-  rotationSpeed: 20
-  currRecovery: 0
---- !u!114 &7572367655708528790
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1045286511599783539}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e418008cddfc4f0db3ecfafcb586392, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 300
-  currentHealth: 0
-  idleState: {fileID: 0}
-  enemyHealthBar: {fileID: 0}
-  status: 0
-  isBurning: 0
-  iswin: 0
 --- !u!1 &1045286511599783553
 GameObject:
   m_ObjectHideFlags: 0
