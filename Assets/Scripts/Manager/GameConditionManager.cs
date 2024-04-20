@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameConditionManager : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class GameConditionManager : MonoBehaviour
     private int enemyDeathCount = 0;
     public int deathThreshold = 10; // Set this to whatever threshold you want
     [SerializeField] GameObject wintext;
-    [SerializeField] TextMeshProUGUI levelGoalText;
+    [SerializeField] Text levelGoalText;
 
     private void Awake()
     {
@@ -24,7 +25,7 @@ public class GameConditionManager : MonoBehaviour
 
         enemyDeathCount = 0; // Reset the count
         if (levelGoalText != null)
-            levelGoalText.text = "Enemies killed: " + enemyDeathCount + "/" + deathThreshold;
+            levelGoalText.text =  ""+(deathThreshold- enemyDeathCount);
     }
 
     private void OnEnable()
@@ -42,7 +43,7 @@ public class GameConditionManager : MonoBehaviour
         enemyDeathCount++;
         Debug.Log(enemyDeathCount);
         if (levelGoalText != null)
-            levelGoalText.SetText("Enemies killed: " + enemyDeathCount + "/" + deathThreshold);
+            levelGoalText.text= "" + (deathThreshold - enemyDeathCount);
         CheckGameOver();
     }
 
@@ -51,6 +52,8 @@ public class GameConditionManager : MonoBehaviour
         if (enemyDeathCount >= deathThreshold)
         {
             EndGame();
+            if (levelGoalText != null)
+                levelGoalText.text = "0";
         }
     }
     
